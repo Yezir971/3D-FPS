@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c442cru7jcurf"]
+
+[ext_resource type="Script" uid="uid://b43404hnepg40" path="res://script/main_menu.gd" id="1_247la"]
+[ext_resource type="FontFile" uid="uid://1465i6skli5p" path="res://models/font/Pirata_One/PirataOne-Regular.ttf" id="1_nl8w3"]
+[ext_resource type="PackedScene" uid="uid://bxwomabx5uus8" path="res://scenes/menu/menu_button.tscn" id="2_3rkf3"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_247la")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_nl8w3")
+theme_override_font_sizes/font_size = 64
+text = "Best Game ever"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 341)
+layout_mode = 2
+alignment = 1
+
+[node name="Play" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_3rkf3")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_right = NodePath("../Exit")
+focus_next = NodePath("../Exit")
+focus_previous = NodePath("../Exit")
+text = "PLay"
+
+[node name="Exit" parent="VBoxContainer/VBoxContainer" instance=ExtResource("2_3rkf3")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_right = NodePath("../Play")
+focus_next = NodePath("../Play")
+focus_previous = NodePath("../Play")
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

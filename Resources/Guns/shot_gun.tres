@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=6 format=3 uid="uid://d14g0ikgj7n60"]
+
+[ext_resource type="AudioStream" uid="uid://bnr5i4pu65kcv" path="res://Resources/sound_guns/metalLatch.ogg" id="1_t0bay"]
+[ext_resource type="AudioStream" uid="uid://bfn4i5wu6c8i6" path="res://Resources/sound_guns/turtle-mating.mp3" id="2_2fhgg"]
+[ext_resource type="ArrayMesh" uid="uid://bf34jq8ki7sgy" path="res://Resources/mesh/shot_gun.tres" id="2_8ghvd"]
+[ext_resource type="Script" uid="uid://blfcvfm4nko26" path="res://Resources/GunResource.gd" id="2_ctfs5"]
+[ext_resource type="AudioStream" uid="uid://d0jvr4brweyb3" path="res://Resources/sound_guns/reload.mp3" id="3_2fhgg"]
+
+[resource]
+script = ExtResource("2_ctfs5")
+Type = 3
+ammo = "piou piou"
+mesh = ExtResource("2_8ghvd")
+cooldown = 0.2
+swaay = 0.15
+automatic = false
+firing_sound = Array[AudioStream]([ExtResource("2_2fhgg")])
+reload_sound = ExtResource("3_2fhgg")
+dry_audio_sound = ExtResource("1_t0bay")
+damage = 10
+spread = 4.0
+max_mag = 8
+max_mag_infinit = true
+bullet_amount = 9
+bullet_range = 16
+metadata/_custom_type_script = "uid://blfcvfm4nko26"

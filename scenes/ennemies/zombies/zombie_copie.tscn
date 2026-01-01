@@ -1,0 +1,128 @@
+[gd_scene load_steps=12 format=3 uid="uid://savj66e6q0th"]
+
+[ext_resource type="Script" uid="uid://cdyn6gvdau0wi" path="res://script/zombie_clone.gd" id="1_o6h5v"]
+[ext_resource type="Script" uid="uid://qcb47yl8cky3" path="res://scenes/ennemies/zombies/character_body_3d_zombie_clone.gd" id="2_1ylek"]
+[ext_resource type="PackedScene" uid="uid://b3l63tipkugag" path="res://models/ennemies/zombie/zombie.glb" id="2_o6h5v"]
+[ext_resource type="AnimationLibrary" uid="uid://crurhub7hhfv6" path="res://models/ennemies/zombie/zombie_idle.glb" id="3_1ylek"]
+[ext_resource type="AnimationLibrary" uid="uid://wihluonkh1p8" path="res://models/ennemies/zombie/zombie_jump.glb" id="4_kd0vt"]
+[ext_resource type="AnimationLibrary" uid="uid://icwbg7nu405c" path="res://models/ennemies/zombie/zombie_run.glb" id="5_ekxbb"]
+[ext_resource type="Script" uid="uid://dqywrlc6wr6sf" path="res://script/progress_bar.gd" id="6_yvy10"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vw14b"]
+radius = 0.383388
+height = 2.21079
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkm61"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vw14b"]
+viewport_path = NodePath("CharacterBody3DZombie/zombie/SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kd0vt"]
+
+[node name="Zombie" type="Node3D" groups=["enemies"]]
+script = ExtResource("1_o6h5v")
+
+[node name="CharacterBody3DZombie" type="CharacterBody3D" parent="." groups=["enemies"]]
+script = ExtResource("2_1ylek")
+
+[node name="zombie" parent="CharacterBody3DZombie" instance=ExtResource("2_o6h5v")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Skeleton3D" parent="CharacterBody3DZombie/zombie/Root" index="0"]
+bones/0/rotation = Quaternion(-0.605833, 1.51546e-07, 0.795592, 1.42971e-08)
+bones/1/rotation = Quaternion(-0.507512, 0.508228, -0.491907, -0.492101)
+bones/2/rotation = Quaternion(0.0157357, -0.00207875, 0.994625, -0.102321)
+bones/3/rotation = Quaternion(0.946129, -0.0218708, 0.0755025, -0.314104)
+bones/5/rotation = Quaternion(0.493697, 0.506224, -0.493697, 0.506225)
+bones/7/rotation = Quaternion(-0.707107, 8.42937e-08, 0.707107, 9.6025e-08)
+bones/9/position = Vector3(-0.20752, 0.193205, 0.0304607)
+bones/9/rotation = Quaternion(-0.746176, 1.08834e-07, 0.665749, 6.86313e-08)
+bones/10/rotation = Quaternion(-0.507685, 0.507902, -0.491728, -0.492438)
+bones/11/rotation = Quaternion(0.0189349, 0.0314524, 0.994127, 0.101806)
+bones/12/rotation = Quaternion(0.948112, 0.011445, -0.0440932, -0.314656)
+bones/14/rotation = Quaternion(-0.514992, -0.484544, 0.514992, -0.484544)
+bones/16/rotation = Quaternion(-0.707107, 2.09427e-07, 0.707107, 8.82042e-08)
+bones/18/position = Vector3(-4.9916e-05, 1.48206, 0.104)
+bones/18/rotation = Quaternion(9.29833e-05, -1.07483e-07, 0.999999, -0.00144322)
+bones/19/rotation = Quaternion(5.29796e-05, -0.0277724, 0.999613, 0.00144524)
+bones/20/rotation = Quaternion(-0.00436645, 4.33355e-08, -1.08422e-08, 0.999991)
+bones/21/rotation = Quaternion(0.0623483, -0.0448528, -0.0028048, 0.997042)
+bones/22/rotation = Quaternion(0.094094, -1.15806e-07, 1.19046e-08, 0.995563)
+bones/23/rotation = Quaternion(0.0766157, 2.36825e-09, -3.5518e-09, 0.997061)
+bones/24/rotation = Quaternion(-0.10883, 0.0437293, -0.0103631, 0.993044)
+bones/26/rotation = Quaternion(0.597656, 0.395507, 0.565647, -0.407952)
+bones/27/rotation = Quaternion(-0.359614, 0.67303, -0.240338, 0.599955)
+bones/28/rotation = Quaternion(0.351214, -0.0730588, -0.0707699, 0.930754)
+bones/29/rotation = Quaternion(-0.0150853, 0.724359, -0.0315801, 0.688534)
+bones/31/rotation = Quaternion(0.771667, 0.046641, 0.00196531, 0.634311)
+bones/32/rotation = Quaternion(0.410935, -0.0278592, 0.0125058, 0.911153)
+bones/34/rotation = Quaternion(-0.213061, 0.695039, 0.358431, 0.585707)
+bones/35/rotation = Quaternion(0.660648, -0.0754554, 0.119352, 0.737297)
+bones/37/rotation = Quaternion(0.678187, -0.48571, 0.463528, 0.298814)
+bones/38/rotation = Quaternion(0.0472983, 0.906255, 0.401212, -0.124471)
+bones/39/rotation = Quaternion(-0.0678256, -0.0210801, 0.351795, 0.933379)
+bones/40/rotation = Quaternion(-0.0108132, 0.109294, -0.0332856, 0.993393)
+bones/42/rotation = Quaternion(-0.7474, 0.0422065, 0.00765546, 0.662988)
+bones/43/rotation = Quaternion(-0.410937, -0.0278581, -0.0125045, 0.911152)
+bones/45/rotation = Quaternion(-0.23102, 0.802493, -0.347127, -0.426776)
+bones/46/rotation = Quaternion(-0.595142, 0.0459217, 0.310654, 0.739724)
+bones/48/rotation = Quaternion(0.996598, 0.0689333, -0.00275037, 0.0450998)
+bones/49/rotation = Quaternion(0.345909, 0.0304998, 0.12914, 0.928838)
+bones/50/rotation = Quaternion(-0.660567, -0.159216, -0.157469, 0.716593)
+bones/51/rotation = Quaternion(-0.0198198, 0.952286, -0.298255, 0.0616594)
+bones/53/rotation = Quaternion(0.972735, -0.0543276, -0.152304, 0.166251)
+bones/54/rotation = Quaternion(0.391447, 0.0105363, -0.166704, 0.904913)
+bones/55/rotation = Quaternion(-0.617623, 0.218594, 0.171985, 0.735649)
+bones/56/rotation = Quaternion(0.0282605, 0.953941, -0.297574, -0.025448)
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3DZombie/zombie"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3DZombie/zombie/Area3D"]
+transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 1.85738, 0.30565)
+shape = SubResource("CapsuleShape3D_vw14b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3DZombie/zombie"]
+libraries = {
+&"zombie_idle": ExtResource("3_1ylek"),
+&"zombie_jump": ExtResource("4_kd0vt"),
+&"zombie_run": ExtResource("5_ekxbb")
+}
+autoplay = "zombie_idle/Idle"
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3DZombie/zombie"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="CharacterBody3DZombie/zombie/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -9.0
+offset_right = 64.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_lkm61")
+value = 100.0
+script = ExtResource("6_yvy10")
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3DZombie/zombie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.96008, 0.223715)
+billboard = 1
+texture = SubResource("ViewportTexture_vw14b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3DZombie"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.931967, 0)
+shape = SubResource("CapsuleShape3D_kd0vt")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3DZombie"]
+
+[connection signal="area_entered" from="CharacterBody3DZombie/zombie/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="value_changed" from="CharacterBody3DZombie/zombie/SubViewport/ProgressBar" to="CharacterBody3DZombie/zombie/SubViewport/ProgressBar" method="_on_value_changed"]
+
+[editable path="CharacterBody3DZombie/zombie"]

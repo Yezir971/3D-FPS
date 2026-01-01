@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlmklgpuwsqpd"]
+
+[ext_resource type="Script" uid="uid://b8tsx71dl3skl" path="res://script/gun_system.gd" id="1_ym0ay"]
+
+[node name="GunSystem" type="Node"]
+script = ExtResource("1_ym0ay")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="AudioStreamBullet3D" type="AudioStreamPlayer3D" parent="."]

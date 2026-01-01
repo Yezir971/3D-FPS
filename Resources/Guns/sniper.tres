@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=6 format=3 uid="uid://jbnrvmxwsg1p"]
+
+[ext_resource type="AudioStream" uid="uid://bnr5i4pu65kcv" path="res://Resources/sound_guns/metalLatch.ogg" id="1_sa2ee"]
+[ext_resource type="AudioStream" uid="uid://bjn2o878h33qp" path="res://Resources/sound_guns/mathilde.mp3" id="2_ljhnf"]
+[ext_resource type="Script" uid="uid://blfcvfm4nko26" path="res://Resources/GunResource.gd" id="2_q3lu1"]
+[ext_resource type="ArrayMesh" uid="uid://dvd0ctputrpes" path="res://Resources/mesh/sniper_mesh.tres" id="2_rchsy"]
+[ext_resource type="AudioStream" uid="uid://d0jvr4brweyb3" path="res://Resources/sound_guns/reload.mp3" id="4_h5dl7"]
+
+[resource]
+script = ExtResource("2_q3lu1")
+Type = 2
+ammo = "sniper"
+mesh = ExtResource("2_rchsy")
+cooldown = 0.2
+swaay = 0.15
+automatic = false
+firing_sound = Array[AudioStream]([ExtResource("2_ljhnf")])
+reload_sound = ExtResource("4_h5dl7")
+dry_audio_sound = ExtResource("1_sa2ee")
+damage = 150
+spread = 0.0
+max_mag = 10
+max_mag_infinit = false
+bullet_amount = 2
+bullet_range = 120
+metadata/_custom_type_script = "uid://blfcvfm4nko26"

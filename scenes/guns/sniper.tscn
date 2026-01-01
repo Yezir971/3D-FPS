@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://wj6vjv4egbmb"]
+
+[ext_resource type="PackedScene" uid="uid://jssi6yog0hu2" path="res://models/guns/FBX format/blaster-e.fbx" id="1_0re7v"]
+
+[node name="Sniper" type="Node3D"]
+
+[node name="blaster-e" parent="." instance=ExtResource("1_0re7v")]
+
+[editable path="blaster-e"]
