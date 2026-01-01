@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://crsaccju2ycsy"]
+[gd_scene load_steps=12 format=3 uid="uid://crsaccju2ycsy"]
 
 [ext_resource type="Script" uid="uid://b67eon1q43y6a" path="res://script/zombie.gd" id="1_mwln7"]
 [ext_resource type="PackedScene" uid="uid://b3l63tipkugag" path="res://models/ennemies/zombie/zombie.glb" id="1_vw14b"]
+[ext_resource type="Script" uid="uid://bhy3ocssqschs" path="res://scenes/ennemies/zombies/character_body_3d.gd" id="2_6ceq3"]
 [ext_resource type="AnimationLibrary" uid="uid://crurhub7hhfv6" path="res://models/ennemies/zombie/zombie_idle.glb" id="2_mwln7"]
 [ext_resource type="AnimationLibrary" uid="uid://wihluonkh1p8" path="res://models/ennemies/zombie/zombie_jump.glb" id="3_ba24k"]
 [ext_resource type="AnimationLibrary" uid="uid://icwbg7nu405c" path="res://models/ennemies/zombie/zombie_run.glb" id="4_6ceq3"]
@@ -14,15 +15,21 @@ height = 2.21079
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkm61"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vw14b"]
-viewport_path = NodePath("zombie/SubViewport")
+viewport_path = NodePath("CharacterBody3D/zombie/SubViewport")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ba24k"]
+height = 2.24444
 
 [node name="Zombie" type="Node3D" groups=["enemies"]]
 script = ExtResource("1_mwln7")
 
-[node name="zombie" parent="." instance=ExtResource("1_vw14b")]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["enemies"]]
+script = ExtResource("2_6ceq3")
+
+[node name="zombie" parent="CharacterBody3D" instance=ExtResource("1_vw14b")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
-[node name="Skeleton3D" parent="zombie/Root" index="0"]
+[node name="Skeleton3D" parent="CharacterBody3D/zombie/Root" index="0"]
 bones/0/rotation = Quaternion(-0.605833, 1.51546e-07, 0.795592, 1.42971e-08)
 bones/1/rotation = Quaternion(-0.507512, 0.508228, -0.491907, -0.492101)
 bones/2/rotation = Quaternion(0.0157357, -0.00207875, 0.994625, -0.102321)
@@ -69,21 +76,13 @@ bones/54/rotation = Quaternion(0.391447, 0.0105363, -0.166704, 0.904913)
 bones/55/rotation = Quaternion(-0.617623, 0.218594, 0.171985, 0.735649)
 bones/56/rotation = Quaternion(0.0282605, 0.953941, -0.297574, -0.025448)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="zombie"]
+[node name="Area3D" type="Area3D" parent="CharacterBody3D/zombie"]
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="zombie/CharacterBody3D"]
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="zombie/CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/zombie/Area3D"]
 transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 1.85738, 0.30565)
 shape = SubResource("CapsuleShape3D_vw14b")
 
-[node name="Area3D" type="Area3D" parent="zombie"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="zombie/Area3D"]
-transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 1.85738, 0.30565)
-shape = SubResource("CapsuleShape3D_vw14b")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="zombie"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D/zombie"]
 libraries = {
 &"zombie_idle": ExtResource("2_mwln7"),
 &"zombie_jump": ExtResource("3_ba24k"),
@@ -91,13 +90,13 @@ libraries = {
 }
 autoplay = "zombie_idle/Idle"
 
-[node name="SubViewport" type="SubViewport" parent="zombie"]
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3D/zombie"]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="zombie/SubViewport"]
+[node name="ProgressBar" type="ProgressBar" parent="CharacterBody3D/zombie/SubViewport"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -110,15 +109,20 @@ offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_lkm61")
-value = 100.0
 script = ExtResource("6_ba24k")
 
-[node name="Sprite3D" type="Sprite3D" parent="zombie"]
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D/zombie"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.96008, 0.223715)
 billboard = 1
 texture = SubResource("ViewportTexture_vw14b")
 
-[connection signal="area_entered" from="zombie/Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="value_changed" from="zombie/SubViewport/ProgressBar" to="zombie/SubViewport/ProgressBar" method="_on_value_changed"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20855, 0.156004)
+shape = SubResource("CapsuleShape3D_ba24k")
 
-[editable path="zombie"]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D"]
+
+[connection signal="area_entered" from="CharacterBody3D/zombie/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="value_changed" from="CharacterBody3D/zombie/SubViewport/ProgressBar" to="CharacterBody3D/zombie/SubViewport/ProgressBar" method="_on_value_changed"]
+
+[editable path="CharacterBody3D/zombie"]

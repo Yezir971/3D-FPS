@@ -1,12 +1,87 @@
-[gd_scene load_steps=12 format=3 uid="uid://savj66e6q0th"]
+[gd_scene load_steps=12 format=3 uid="uid://blb5naamxceol"]
 
-[ext_resource type="Script" uid="uid://cdyn6gvdau0wi" path="res://script/zombie_clone.gd" id="1_o6h5v"]
-[ext_resource type="Script" uid="uid://qcb47yl8cky3" path="res://scenes/ennemies/zombies/character_body_3d_zombie_clone.gd" id="2_1ylek"]
 [ext_resource type="PackedScene" uid="uid://b3l63tipkugag" path="res://models/ennemies/zombie/zombie.glb" id="2_o6h5v"]
 [ext_resource type="AnimationLibrary" uid="uid://crurhub7hhfv6" path="res://models/ennemies/zombie/zombie_idle.glb" id="3_1ylek"]
 [ext_resource type="AnimationLibrary" uid="uid://wihluonkh1p8" path="res://models/ennemies/zombie/zombie_jump.glb" id="4_kd0vt"]
 [ext_resource type="AnimationLibrary" uid="uid://icwbg7nu405c" path="res://models/ennemies/zombie/zombie_run.glb" id="5_ekxbb"]
 [ext_resource type="Script" uid="uid://dqywrlc6wr6sf" path="res://script/progress_bar.gd" id="6_yvy10"]
+
+[sub_resource type="GDScript" id="GDScript_kplem"]
+script/source = "extends Node3D
+@onready var progress_bar: ProgressBar = $CharacterBody3DZombie/zombie/SubViewport/ProgressBar
+@onready var area_3d: Area3D = $CharacterBody3DZombie/zombie/Area3D
+@onready var animation_player: AnimationPlayer = $CharacterBody3DZombie/zombie/AnimationPlayer
+
+@export var hp : int = 100
+var is_dead = false 
+
+func _ready() -> void:
+	progress_bar.value = hp
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if is_dead : return
+	if area.is_in_group(\"bullet_player\"):
+		animation_player.play(\"zombie_jump/jump\")
+		if progress_bar.value <= 0:
+			death()
+			
+func death():
+	animation_player.play(\"zombie_idle/Idle\")
+	is_dead = true
+	queue_free()
+	
+func take_damage(damage : int):
+	progress_bar.value -= damage
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_efjgg"]
+script/source = "extends CharacterBody3D
+
+
+const SPEED = 2
+var gravity = 9.8
+@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var animation_player: AnimationPlayer = $zombie/AnimationPlayer
+
+var is_detected = true
+
+
+
+func _physics_process(delta: float) -> void:
+	# On applique la gravité qu'on bouge ou non
+	if not is_on_floor(): 	
+		velocity.y -= gravity * delta
+	else:
+		velocity.y = -0.1 # Petite pression vers le bas pour rester collé au sol
+	
+		# On récupère le chemin
+	var next_location = navigation_agent_3d.get_next_path_position()
+	var direction = (next_location - global_position).normalized()
+	#forcer l'enemi a regarder dans la direction du joueur 
+	if not navigation_agent_3d.is_navigation_finished() and global_position.distance_to(next_location) > 0.1 and is_detected:
+		look_at(next_location, Vector3(0,1,0),true )
+	
+		# On ne bouge horizontalement que si on n'est pas déjà arrivé
+		#if not navigation_agent_3d.is_navigation_finished():
+		animation_player.play(\"zombie_run/Run\")
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+		
+		
+	else:
+		velocity.x = 0
+		velocity.z = 0
+		animation_player.play(\"zombie_idle/Idle\")
+		
+	move_and_slide()
+
+
+
+func target_position(target):
+	navigation_agent_3d.target_position = target
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vw14b"]
 radius = 0.383388
@@ -20,10 +95,10 @@ viewport_path = NodePath("CharacterBody3DZombie/zombie/SubViewport")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kd0vt"]
 
 [node name="Zombie" type="Node3D" groups=["enemies"]]
-script = ExtResource("1_o6h5v")
+script = SubResource("GDScript_kplem")
 
 [node name="CharacterBody3DZombie" type="CharacterBody3D" parent="." groups=["enemies"]]
-script = ExtResource("2_1ylek")
+script = SubResource("GDScript_efjgg")
 
 [node name="zombie" parent="CharacterBody3DZombie" instance=ExtResource("2_o6h5v")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)

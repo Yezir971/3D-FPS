@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var hp_player: ProgressBar = $CanvasLayer/HUD/ProgressBar
+
 ## Can we move around?
 @export var can_move : bool = true
 ## Are we affected by gravity?
@@ -10,6 +12,9 @@ extends CharacterBody3D
 @export var can_sprint : bool = false
 ## Can we press to enter freefly mode (noclip)?
 @export var can_freefly : bool = false
+
+@export_category("player")
+@export var life_player : int = 100
 
 @export_group("Speeds")
 ## Look around rotation speed.
@@ -60,6 +65,8 @@ var freeflying : bool = false
 
 
 func _ready() -> void:
+	#initialise les hp du joueur 
+	hp_player.value = life_player
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x

@@ -25,5 +25,4 @@ offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_lkm61")
-value = 50.0
 show_percentage = false
