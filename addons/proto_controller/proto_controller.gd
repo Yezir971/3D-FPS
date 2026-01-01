@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var hp_player: ProgressBar = $CanvasLayer/HUD/ProgressBar
+@onready var game_over_screen: Control = $CanvasLayer/HUD/GameOverScreen
 
 ## Can we move around?
 @export var can_move : bool = true
@@ -70,6 +71,12 @@ func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+func _process(delta: float) -> void:
+	if hp_player.value <= 0:
+		game_over_screen.visible = true
+		get_tree().paused = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -190,6 +197,10 @@ func check_input_mappings():
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
 
+
+#func take_damage(damage : int):
+	#hp_player.value -= damage
+	
 #func switch_weapon(new_weapon : Gun):
 	#if new_weapon == current_gun:
 		#return

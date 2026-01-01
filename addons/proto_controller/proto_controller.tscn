@@ -68,6 +68,7 @@ states/jump_Root|Jump/position = Vector2(516, 247)
 states/run_Root|Run/node = SubResource("AnimationNodeAnimation_6dqce")
 states/run_Root|Run/position = Vector2(631, 116)
 transitions = ["idle_Root|Idle", "run_Root|Run", SubResource("AnimationNodeStateMachineTransition_0rk7u"), "run_Root|Run", "idle_Root|Idle", SubResource("AnimationNodeStateMachineTransition_h60nn"), "Start", "idle_Root|Idle", SubResource("AnimationNodeStateMachineTransition_ujot4"), "jump_Root|Jump", "run_Root|Run", SubResource("AnimationNodeStateMachineTransition_wr06p"), "jump_Root|Jump", "idle_Root|Idle", SubResource("AnimationNodeStateMachineTransition_5hfox"), "run_Root|Run", "jump_Root|Jump", SubResource("AnimationNodeStateMachineTransition_6dqce"), "idle_Root|Idle", "jump_Root|Jump", SubResource("AnimationNodeStateMachineTransition_1tksx")]
+graph_offset = Vector2(0, 58.0741)
 
 [node name="ProtoController" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_ucva2")

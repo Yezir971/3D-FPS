@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctyqluswhhn7v"]
+[gd_scene load_steps=5 format=3 uid="uid://ctyqluswhhn7v"]
 
+[ext_resource type="Script" uid="uid://cjrk5k3r5sa4f" path="res://script/hud.gd" id="1_0bx4p"]
 [ext_resource type="Script" uid="uid://dqywrlc6wr6sf" path="res://script/progress_bar.gd" id="1_48c2t"]
+[ext_resource type="FontFile" uid="uid://1465i6skli5p" path="res://models/font/Pirata_One/PirataOne-Regular.ttf" id="2_c45xl"]
+[ext_resource type="PackedScene" uid="uid://bxwomabx5uus8" path="res://scenes/menu/menu_button.tscn" id="3_0bx4p"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -10,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_0bx4p")
 
 [node name="LabelLife" type="Label" parent="."]
 layout_mode = 1
@@ -39,4 +43,55 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("1_48c2t")
 
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverScreen/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c45xl")
+theme_override_font_sizes/font_size = 64
+text = "Game Over"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 341)
+layout_mode = 2
+alignment = 1
+
+[node name="retry" parent="GameOverScreen/VBoxContainer/VBoxContainer" instance=ExtResource("3_0bx4p")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_right = NodePath("../Exit")
+focus_next = NodePath("../Exit")
+focus_previous = NodePath("../Exit")
+text = "retry"
+
+[node name="Exit" parent="GameOverScreen/VBoxContainer/VBoxContainer" instance=ExtResource("3_0bx4p")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../retry")
+focus_neighbor_right = NodePath("../retry")
+focus_next = NodePath("../retry")
+focus_previous = NodePath("../retry")
+text = "Exit"
+
 [connection signal="value_changed" from="ProgressBar" to="ProgressBar" method="_on_value_changed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/VBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

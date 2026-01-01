@@ -7,8 +7,8 @@ var gravity = 9.8
 @onready var animation_player: AnimationPlayer = $skeleton_mage/AnimationPlayer
 @onready var skeletons: Node3D = $".."
 
-var is_detected = true
 
+var is_detected = true
 
 
 func _physics_process(delta: float) -> void:
@@ -43,6 +43,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.z = 0
 		animation_player.play("1H_Melee_Attack_Stab")
+		
 		
 	move_and_slide()
 
