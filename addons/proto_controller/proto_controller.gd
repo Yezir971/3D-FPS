@@ -91,7 +91,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			disable_freefly()
 
 func _physics_process(delta: float) -> void:
-	hp_player.value -= delta * 50
 	if hp_player.value <= 0:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
@@ -197,6 +196,10 @@ func check_input_mappings():
 	if can_freefly and not InputMap.has_action(input_freefly):
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
+
+func hit_player(damage : int):
+	hp_player.value -= damage
+	
 
 #func switch_weapon(new_weapon : Gun):
 	#if new_weapon == current_gun:
