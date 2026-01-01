@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var hp_player: ProgressBar = $CanvasLayer/HUD/ProgressBar
+@onready var game_over: Control = $CanvasLayer/HUD/GameOver
 
 ## Can we move around?
 @export var can_move : bool = true
@@ -90,6 +91,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			disable_freefly()
 
 func _physics_process(delta: float) -> void:
+	hp_player.value -= delta * 50
+	if hp_player.value <= 0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
+		game_over.visible = true 
+		
+	
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)

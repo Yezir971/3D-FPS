@@ -5,14 +5,14 @@
 [ext_resource type="Script" uid="uid://dspnyi7bm6kea" path="res://scenes/ennemies/skeletons/character_body_3d_skeletons.gd" id="2_iq34d"]
 [ext_resource type="Script" uid="uid://dqywrlc6wr6sf" path="res://script/progress_bar.gd" id="3_qiyck"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3eyau"]
+radius = 0.590591
+height = 2.70843
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkm61"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qiyck"]
 viewport_path = NodePath("CharacterBody3D/skeleton_mage/SubViewport")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3eyau"]
-radius = 0.590591
-height = 2.70843
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qiyck"]
 radius = 0.534919
@@ -26,38 +26,10 @@ script = ExtResource("2_iq34d")
 
 [node name="skeleton_mage" parent="CharacterBody3D" groups=["enemies"] instance=ExtResource("1_3eyau")]
 
-[node name="SubViewport" type="SubViewport" parent="CharacterBody3D/skeleton_mage"]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(256, 256)
-render_target_update_mode = 4
-
-[node name="ProgressBar" type="ProgressBar" parent="CharacterBody3D/skeleton_mage/SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -9.0
-offset_right = 64.0
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_lkm61")
-script = ExtResource("3_qiyck")
-
-[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D/skeleton_mage"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.032, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_qiyck")
-
 [node name="Skeleton3D" parent="CharacterBody3D/skeleton_mage/Rig" index="0"]
 bones/1/position = Vector3(0, 0.392064, 0)
 bones/1/rotation = Quaternion(-1.11123e-10, 0.0431578, 2.57241e-09, 0.999068)
-bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(-6.93889e-18, 7.10543e-15, 4.93038e-32, 1)
-bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(8.27181e-25, 3.72529e-09, -2.75506e-40, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/position = Vector3(0.212007, 0.134132, 7.92996e-08)
@@ -85,7 +57,6 @@ bones/13/position = Vector3(-1.5736e-08, 0.0961251, -0.0575)
 bones/13/rotation = Quaternion(-1.02444e-09, -4.24391e-09, 0.707107, 0.707107)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/rotation = Quaternion(-5.80608e-11, -0.0313417, -1.88012e-09, 0.999509)
-bones/14/scale = Vector3(1, 1, 1)
 bones/16/position = Vector3(0.170945, 0.113587, 1.59941e-08)
 bones/16/rotation = Quaternion(0.996185, 0.0479136, 0.0566427, -0.045939)
 bones/16/scale = Vector3(1, 1, 1)
@@ -135,10 +106,9 @@ bones/39/rotation = Quaternion(0.794627, -1.11759e-07, 0.607098, -5.96046e-08)
 bones/40/rotation = Quaternion(-0.707107, -7.27951e-08, -7.27951e-08, 0.707107)
 bones/41/position = Vector3(-0.510844, 0.788312, 0.0597369)
 bones/41/rotation = Quaternion(-0.758253, -1.82539e-07, 0.651961, -1.11759e-08)
-bones/41/scale = Vector3(1, 1, 1)
 
 [node name="Skeleton_Mage_Hat" parent="CharacterBody3D/skeleton_mage/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.55686e-10, -0.0236466, -3.22637e-10, 0.99972, 0.000286014, 1.7705, -6.90145e-06)
+transform = Transform3D(0.99972, -1.40145e-09, 0.0236468, 1.39343e-09, 1, 3.55687e-10, -0.0236468, -3.22638e-10, 0.99972, 0.000286014, 1.7705, -6.90152e-06)
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D/skeleton_mage/Rig" index="1" groups=["enemies"]]
 
@@ -146,8 +116,34 @@ transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.5568
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21607, 0)
 shape = SubResource("CapsuleShape3D_3eyau")
 
-[node name="AnimationPlayer" parent="CharacterBody3D/skeleton_mage" index="3"]
+[node name="AnimationPlayer" parent="CharacterBody3D/skeleton_mage" index="1"]
 autoplay = "Idle"
+
+[node name="SubViewport" type="SubViewport" parent="CharacterBody3D/skeleton_mage"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="CharacterBody3D/skeleton_mage/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -9.0
+offset_right = 64.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_lkm61")
+script = ExtResource("3_qiyck")
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D/skeleton_mage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.032, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_qiyck")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D/skeleton_mage"]
 
@@ -155,7 +151,7 @@ autoplay = "Idle"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18579, 0.156)
 shape = SubResource("CapsuleShape3D_qiyck")
 
-[connection signal="value_changed" from="CharacterBody3D/skeleton_mage/SubViewport/ProgressBar" to="CharacterBody3D/skeleton_mage/SubViewport/ProgressBar" method="_on_value_changed"]
 [connection signal="area_entered" from="CharacterBody3D/skeleton_mage/Rig/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="value_changed" from="CharacterBody3D/skeleton_mage/SubViewport/ProgressBar" to="CharacterBody3D/skeleton_mage/SubViewport/ProgressBar" method="_on_value_changed"]
 
 [editable path="CharacterBody3D/skeleton_mage"]
