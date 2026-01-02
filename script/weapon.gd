@@ -9,6 +9,11 @@ extends Node3D
 @onready var amoun_amo_hud: Label = $"HudWeapon/Control/AmounAmo"
 @onready var name_wapon_hud: Label = $HudWeapon/Control/NameWapon
 
+@onready var hud_weapon_1: MarginContainer = $"HudWeapon/Control/HBoxContainer/1/MarginContainer/MarginContainer"
+@onready var hud_weapon_2: MarginContainer = $"HudWeapon/Control/HBoxContainer/2/MarginContainer/MarginContainer"
+@onready var hud_weapon_3: MarginContainer = $"HudWeapon/Control/HBoxContainer/3/MarginContainer/MarginContainer"
+
+
 
 
 var bullet = preload("res://scenes/guns/bullet.tscn")
@@ -30,19 +35,71 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("gun_slot_1"):
-		DATA_GUN = preload("res://Resources/Guns/shot_gun.tres")		
+		DATA_GUN = preload("res://Resources/Guns/sniper.tres")
 		update_weapon()
 		showHud()
 		updateHud()
 		can_shoot = true
 		
+		hud_weapon_2.add_theme_constant_override("margin_left", 10)
+		hud_weapon_2.add_theme_constant_override("margin_top", 8)
+		hud_weapon_2.add_theme_constant_override("margin_right", 10)
+		hud_weapon_2.add_theme_constant_override("margin_bottom", 8)
+		
+		hud_weapon_3.add_theme_constant_override("margin_left", 10)
+		hud_weapon_3.add_theme_constant_override("margin_top", 8)
+		hud_weapon_3.add_theme_constant_override("margin_right", 10)
+		hud_weapon_3.add_theme_constant_override("margin_bottom", 8)
+		
+		
+		hud_weapon_1.add_theme_constant_override("margin_left", 24)
+		hud_weapon_1.add_theme_constant_override("margin_top", 16)
+		hud_weapon_1.add_theme_constant_override("margin_right", 24)
+		hud_weapon_1.add_theme_constant_override("margin_bottom", 16)
+		
 	if event.is_action_pressed("gun_slot_2"):
-		DATA_GUN = preload("res://Resources/Guns/sniper.tres")
+		DATA_GUN = preload("res://Resources/Guns/shot_gun.tres")
 		update_weapon()
 		showHud()
 		updateHud()
-
 		can_shoot = true
+		
+		hud_weapon_1.add_theme_constant_override("margin_left", 10)
+		hud_weapon_1.add_theme_constant_override("margin_top", 8)
+		hud_weapon_1.add_theme_constant_override("margin_right", 10)
+		hud_weapon_1.add_theme_constant_override("margin_bottom", 8)
+		
+		hud_weapon_3.add_theme_constant_override("margin_left", 10)
+		hud_weapon_3.add_theme_constant_override("margin_top", 8)
+		hud_weapon_3.add_theme_constant_override("margin_right", 10)
+		hud_weapon_3.add_theme_constant_override("margin_bottom", 8)
+		
+		hud_weapon_2.add_theme_constant_override("margin_left", 24)
+		hud_weapon_2.add_theme_constant_override("margin_top", 16)
+		hud_weapon_2.add_theme_constant_override("margin_right", 24)
+		hud_weapon_2.add_theme_constant_override("margin_bottom", 16)
+		
+	if event.is_action_pressed("gun_slot_3"):
+		DATA_GUN =  preload("res://Resources/Guns/pm.tres")
+		update_weapon()
+		showHud()
+		updateHud()
+		can_shoot = true
+		
+		hud_weapon_1.add_theme_constant_override("margin_left", 10)
+		hud_weapon_1.add_theme_constant_override("margin_top", 8)
+		hud_weapon_1.add_theme_constant_override("margin_right", 10)
+		hud_weapon_1.add_theme_constant_override("margin_bottom", 8)
+		
+		hud_weapon_2.add_theme_constant_override("margin_left", 10)
+		hud_weapon_2.add_theme_constant_override("margin_top", 8)
+		hud_weapon_2.add_theme_constant_override("margin_right", 10)
+		hud_weapon_2.add_theme_constant_override("margin_bottom", 8)
+		
+		hud_weapon_3.add_theme_constant_override("margin_left", 24)
+		hud_weapon_3.add_theme_constant_override("margin_top", 16)
+		hud_weapon_3.add_theme_constant_override("margin_right", 24)
+		hud_weapon_3.add_theme_constant_override("margin_bottom", 16)
 
 	if event.is_action_pressed("shoot") and can_shoot:
 		if not animation_shoot.is_playing() and current_amo > 0:

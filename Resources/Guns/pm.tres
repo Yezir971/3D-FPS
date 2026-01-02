@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=4 format=3 uid="uid://b8os73nhyt7dn"]
+
+[ext_resource type="AudioStream" uid="uid://bnr5i4pu65kcv" path="res://Resources/sound_guns/metalLatch.ogg" id="1_wg4ex"]
+[ext_resource type="ArrayMesh" uid="uid://dardlmmvqva1g" path="res://Resources/mesh/pm.tres" id="2_o5ru4"]
+[ext_resource type="Script" uid="uid://blfcvfm4nko26" path="res://Resources/GunResource.gd" id="2_pt5xr"]
+
+[resource]
+script = ExtResource("2_pt5xr")
+Type = 5
+ammo = "brll brll"
+mesh = ExtResource("2_o5ru4")
+cooldown = 0.2
+swaay = 0.15
+automatic = true
+firing_sound = Array[AudioStream]([])
+dry_audio_sound = ExtResource("1_wg4ex")
+damage = 6
+spread = 0.0
+max_mag = 4
+max_mag_infinit = false
+bullet_amount = 25
+bullet_range = 40
+metadata/_custom_type_script = "uid://blfcvfm4nko26"

@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cebrnqmufuday"]
+[gd_scene load_steps=8 format=3 uid="uid://cebrnqmufuday"]
 
 [ext_resource type="Script" uid="uid://b10rjbtnb156o" path="res://script/weapon.gd" id="1_51ewx"]
+[ext_resource type="Texture2D" uid="uid://btxnd3ocjkjr5" path="res://models/guns/blaster-f.png" id="2_708ic"]
+[ext_resource type="Texture2D" uid="uid://cirhb6oxoogyb" path="res://models/guns/blaster-h.png" id="3_b7xv7"]
+[ext_resource type="Texture2D" uid="uid://fol412y40yuc" path="res://models/guns/blaster-d.png" id="4_qun7j"]
 
 [sub_resource type="Animation" id="Animation_b7cqr"]
 length = 0.001
@@ -91,3 +94,131 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 56.0
 grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudWeapon/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 154.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="1" type="VBoxContainer" parent="HudWeapon/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/1"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="SlotNumber" type="Label" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "1"
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("2_708ic")
+
+[node name="WeaponName" type="Label" parent="HudWeapon/Control/HBoxContainer/1/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sniper M"
+
+[node name="2" type="VBoxContainer" parent="HudWeapon/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="SlotNumber" type="Label" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "2"
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("3_b7xv7")
+
+[node name="WeaponName" type="Label" parent="HudWeapon/Control/HBoxContainer/2/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Piou Piou"
+
+[node name="3" type="VBoxContainer" parent="HudWeapon/Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/3"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="SlotNumber" type="Label" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "3"
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("4_qun7j")
+
+[node name="WeaponName" type="Label" parent="HudWeapon/Control/HBoxContainer/3/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "brll brll !"
