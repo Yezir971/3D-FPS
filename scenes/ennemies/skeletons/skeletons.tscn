@@ -88,7 +88,7 @@ bones/41/position = Vector3(-0.335004, 0.82588, 0.274458)
 bones/41/rotation = Quaternion(-0.330753, 0.224688, 0.90319, -0.156094)
 
 [node name="Skeleton_Mage_Hat" parent="CharacterBody3D/skeleton_mage/Rig/Skeleton3D" index="0"]
-transform = Transform3D(1, -2.98023e-08, 1.49011e-08, 7.45058e-09, 0.998739, -0.0501992, -7.45058e-08, 0.0501992, 0.998739, 0.0290276, 1.75099, -0.0486338)
+transform = Transform3D(1, -2.98023e-08, -5.81145e-07, -1.11759e-08, 0.998739, -0.050199, 5.66244e-07, 0.050199, 0.998739, 0.0290276, 1.75099, -0.048634)
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D/skeleton_mage/Rig" index="1" groups=["enemies"]]
 
@@ -130,6 +130,10 @@ texture = SubResource("ViewportTexture_iq34d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18579, 0.156)
 shape = SubResource("CapsuleShape3D_qiyck")
+
+[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.813268, 0)
+target_position = Vector3(0, 0, 10)
 
 [connection signal="area_entered" from="CharacterBody3D/skeleton_mage/Rig/Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="animation_finished" from="CharacterBody3D/skeleton_mage/AnimationPlayer" to="CharacterBody3D" method="_on_animation_player_animation_finished"]

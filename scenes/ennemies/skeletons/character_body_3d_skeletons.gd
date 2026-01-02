@@ -7,8 +7,9 @@ var gravity = 9.8
 @onready var navigation_agent_3d: NavigationAgent3D = $skeleton_mage/NavigationAgent3D
 @onready var animation_player: AnimationPlayer = $skeleton_mage/AnimationPlayer
 @onready var skeletons: Node3D = $".."
+@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
-#var is_detected = true
+var is_detected = false
 var player = null
 var is_attacking = false 
 var can_attack = true
@@ -23,6 +24,12 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0
 		move_and_slide()
 		return
+	#les ennemy se mettent a bouger que si le joueur passe devant eux 
+	if ray_cast_3d.is_colliding():
+		var obj = ray_cast_3d.get_collider()
+		if obj.is_in_group("player"):
+			is_detected = true
+
 
 
 	if not is_on_floor(): 	
@@ -30,10 +37,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = -0.1 # Petite pression vers le bas pour rester collé au sol
 	
-	if target_in_range():
+	if target_in_range() and is_detected:
 			# On lance l'attaque une seule fois
 		start_attack()
-	elif not navigation_agent_3d.is_navigation_finished():
+	elif not navigation_agent_3d.is_navigation_finished() and is_detected:
 		
 		var next_location = navigation_agent_3d.get_next_path_position()
 		var direction = (next_location - global_position).normalized()
