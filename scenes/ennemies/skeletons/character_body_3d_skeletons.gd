@@ -2,8 +2,9 @@ extends CharacterBody3D
 
 
 const SPEED = 1
-const ATTAK_RANGE = 2
+const ATTAK_RANGE = 3
 var state_machine
+var is_dead = false
 @onready var animation_tree: AnimationTree = $skeleton_mage/AnimationTree
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 
@@ -12,30 +13,43 @@ var gravity = 9.8
 @onready var animation_player: AnimationPlayer = $skeleton_mage/AnimationPlayer
 @onready var skeletons: Node3D = $".."
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
+@onready var progress_bar: ProgressBar = $skeleton_mage/SubViewport/ProgressBar
 
 var is_detected = false
 var player = null
 var is_attacking = false 
 var can_attack = true
 @export var player_path : NodePath
-
+@export var pv : int = 100
 func _ready() -> void:
 	player = get_node(player_path)
 	state_machine = animation_tree.get("parameters/playback")
+	progress_bar.max_value = pv
+	progress_bar.value = pv
+	
 
 
 func _physics_process(delta: float) -> void:
+	if progress_bar.value <=0 :
+		animation_tree.set('parameters/conditions/Death', true)
+		is_dead = true
 	if not is_on_floor(): 
 		velocity.y -= gravity * delta
 	else:
-		velocity.y = -0.1 # Petite pression vers le bas pour rester collé au sol
+		velocity.y = -0.1 
 	match state_machine.get_current_node():
 		"Idle":
+			
 			velocity.x = 0
 			velocity.z = 0
-			# Si le joueur existe, on passe en Run
-			animation_tree.set("parameters/conditions/Run", true)
-
+			if ray_cast_3d.is_colliding():
+				var obj = ray_cast_3d.get_collider()
+				if obj.is_in_group("player"):
+					is_detected = true
+			if is_detected:
+				animation_tree.set("parameters/conditions/Run", true)
+			animation_tree.set("parameters/conditions/Idle", true)
+			
 
 		"Run":
 			navigation_agent_3d.target_position = player.global_position
@@ -49,61 +63,30 @@ func _physics_process(delta: float) -> void:
 				animation_tree.set("parameters/conditions/Attack", target_in_range())
 			
 		"Attack":
-			look_at(Vector3(player.global_position.x, global_position.y, global_position.z), Vector3.UP, true)
+			look_at(Vector3(player.global_position.x, player.global_position.y, player.global_position.z), Vector3.UP, true)
+			animation_tree.set("parameters/conditions/Attack", target_in_range())
 			animation_tree.set("parameters/conditions/Run", !target_in_range())
 		"Death":
-			pass
+			collision_shape_3d.disabled = true
+			await get_tree().create_timer(5).timeout
+			queue_free()
 		"Hit":
-			pass
+			velocity = Vector3.ZERO
+			animation_tree.set('parameters/conditions/Hit', false)
+
 	move_and_slide()
 	
+func take_damage(damage : int):
+	if is_dead : return
+	progress_bar.value -= damage
+	is_detected = true
+	animation_tree.set('parameters/conditions/Hit', true)
 	
-	
-	#if skeletons.is_dead or is_attacking:
-		#velocity.x = 0
-		#velocity.z = 0
-		#move_and_slide()
-		#return
-	#les ennemy se mettent a bouger que si le joueur passe devant eux 
-	#if ray_cast_3d.is_colliding():
-		#var obj = ray_cast_3d.get_collider()
-		#if obj.is_in_group("player"):
-			#is_detected = true
 
+func hit_player():
+	if target_in_range():
+		player.hit(5)
 
-
-
-	
-	#if target_in_range() and is_detected:
-			# On lance l'attaque une seule fois
-		#start_attack()
-	#elif not navigation_agent_3d.is_navigation_finished() and is_detected:
-		#
-		#var next_location = navigation_agent_3d.get_next_path_position()
-		#var direction = (next_location - global_position).normalized()
-		#look_at(next_location, Vector3.UP, true)
-		#
-		#animation_player.play("Running_A")
-		#velocity.x = direction.x * SPEED
-		#velocity.z = direction.z * SPEED
-	#else:
-		#velocity.x = 0
-		#velocity.z = 0
-		#animation_player.play("Idle")
-		
-
-func start_attack():
-	is_attacking = true
-	can_attack = false 
-	#animation_player.play("1H_Melee_Attack_Stab")
-	#await get_tree().create_timer(0.4).timeout
-	player.hit(5)
-
-# Connecte ce signal depuis l'onglet "Nœud" de ton AnimationPlayer
-#func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	#if anim_name == "1H_Melee_Attack_Stab":
-		#is_attacking = false
-		#can_attack = true
 func target_position(target):
 	navigation_agent_3d.target_position = target
 

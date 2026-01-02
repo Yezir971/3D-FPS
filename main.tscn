@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cm00346uk577e"]
+[gd_scene load_steps=37 format=3 uid="uid://cm00346uk577e"]
 
 [ext_resource type="Script" uid="uid://c0rtpykgpfwvy" path="res://script/main.gd" id="1_4k2k6"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_ig7tw"]
@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://yjp6se61c2gh" path="res://scenes/props/chair.tscn" id="27_come4"]
 [ext_resource type="PackedScene" uid="uid://cd0aywb5kkoa2" path="res://scenes/props/keyring.tscn" id="28_h8e4i"]
 [ext_resource type="PackedScene" uid="uid://bbjgncgx5c3lg" path="res://scenes/props/sword_shield.tscn" id="29_4lmeg"]
-[ext_resource type="PackedScene" uid="uid://cn6jpuy3tmp4y" path="res://scenes/ennemies/skeletons/skeletons.tscn" id="31_htxhm"]
+[ext_resource type="PackedScene" uid="uid://dxs08upw3ktqq" path="res://scenes/ennemies/skeletons/skeletons_character_body_3d.tscn" id="32_htxhm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4k2k6"]
 panorama = ExtResource("1_jq2sk")
@@ -51,9 +51,6 @@ ssao_enabled = true
 [sub_resource type="NavigationMesh" id="NavigationMesh_0rl1p"]
 vertices = PackedVector3Array(-17.5545, 5, -0.751478, -17.3045, 4.75, 2.24852, -17.0545, 5, -0.251478, -15.3045, 5, -0.501478, 16.4455, 5, -0.751478, 14.1955, 5, -0.751478, 16.1955, 5, -0.251478, -17.5545, 5, 22.2485, -17.8045, 4.75, 17.2485, -17.8045, 5, 22.7485, -16.0545, 5, 22.9985, -15.8045, 5, 22.4985, -18.5545, 5, 24.9985, 16.4455, 4.75, 25.2485, -15.5545, 5, 24.9985, -16.0545, 5, 24.7485, 15.9455, 5, 24.9985, -9.5545, 0.749999, 5.24852, -7.8045, 0.749999, 5.24852, -7.8045, 0.749999, 0.498522, -10.0545, 0.749999, 5.99852, -16.5545, 0.999999, 0.498522, -16.5545, 0.749999, 5.99852, -2.8045, 0.749999, 2.99852, -1.5545, 0.749999, 2.99852, -1.8045, 0.749999, 0.248522, -3.5545, 0.749999, 3.74852, -3.5545, 0.749999, 4.99852, 13.1955, 0.749999, 2.99852, 13.6955, 0.749999, 3.99852, 15.1955, 0.749999, 3.99852, 15.1955, 0.749999, 0.498522, -2.8045, 5, 6.24852, -4.8045, 5, 6.24852, -4.8045, 5, 13.2485, -2.5545, 5, 13.4985, -2.3045, 5, 21.2485, 11.6955, 5, 20.9985, 11.4455, 5, 3.99852, -2.3045, 5, 3.99852, 11.4455, 0.749999, 5.49852, 11.1955, 0.749999, 5.99852, 12.1955, 0.749999, 5.99852, 12.9455, 0.749999, 5.24852, 12.6955, 0.749999, 6.99852, 12.6955, 0.749999, 21.2485, 15.1955, 0.749999, 21.2485, 10.1955, 0.749999, 6.24852, -0.304501, 0.749999, 5.24852, -7.5545, 0.999999, 10.4985, -8.0545, 0.999999, 10.7485, -8.0545, 0.999999, 11.9985, -5.5545, 0.999999, 11.9985, -5.5545, 0.999999, 10.2485, -4.3045, 0.999999, 9.24852, -3.5545, 0.999999, 9.24852, -3.3045, 0.999999, 7.99852, 6.9455, 0.749999, 11.4985, 7.6955, 0.749999, 12.7485, 10.1955, 0.749999, 12.7485, 0.695499, 0.749999, 10.7485, 0.695499, 0.749999, 13.9985, 2.6955, 0.749999, 14.2485, 4.9455, 0.749999, 12.2485, 5.6955, 0.749999, 11.4985, -7.3045, 0.999999, 9.24852, -5.3045, 0.999999, 6.99852, -7.8045, 0.999999, 7.49852, 4.9455, 0.749999, 13.2485, -1.8045, 0.749999, 7.49852, -1.8045, 0.749999, 7.99852, -0.304501, 0.749999, 6.49852, -1.5545, 0.749999, 10.4985, -16.5545, 0.749999, 9.99852, -17.0545, 0.999999, 10.4985, -16.3045, 0.749999, 10.9985, -10.0545, 0.749999, 13.2485, -16.3045, 0.749999, 14.2485, -9.0545, 5, 6.24852, -9.0545, 5, 12.9985, 3.1955, 0.749999, 14.7485, 5.6955, 0.749999, 14.2485, 3.1955, 0.749999, 19.9985, 8.4455, 0.749999, 19.9985, 7.9455, 0.749999, 19.2485, 7.6955, 0.749999, 13.4985, 6.9455, 0.749999, 14.2485, 7.9455, 0.749999, 17.7485, 10.1955, 0.749999, 16.7485, -1.3045, 0.749999, 23.9985, -1.0545, 0.749999, 22.2485, -2.8045, 0.749999, 22.2485, -3.5545, 0.749999, 21.4985, -14.8045, 0.749999, 23.9985, -16.8045, 0.999999, 15.9985, -16.5545, 0.749999, 21.4985, -15.3045, 0.749999, 21.4985, -16.3045, 0.749999, 15.7485, -3.5545, 0.749999, 14.2485, -9.3045, 0.749999, 14.2485, -14.8045, 0.749999, 21.9985, -1.5545, 2, 16.4985, -1.5545, 2, 17.4985, -1.0545, 2, 17.4985, -1.0545, 2, 16.4985, 1.4455, 0.749999, 19.2485, 1.1955, 0.749999, 17.4985, 0.445499, 0.749999, 18.7485, -0.0545006, 0.749999, 18.7485, 0.195499, 0.749999, 19.9985, 1.1955, 0.749999, 19.9985, 11.9455, 0.749999, 22.2485, 15.1955, 0.749999, 23.9985)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(3, 2, 0), PackedInt32Array(6, 5, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 7), PackedInt32Array(7, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(15, 10, 14), PackedInt32Array(14, 10, 11), PackedInt32Array(14, 16, 13), PackedInt32Array(14, 12, 15), PackedInt32Array(16, 6, 13), PackedInt32Array(13, 6, 4), PackedInt32Array(19, 18, 17), PackedInt32Array(17, 20, 19), PackedInt32Array(19, 20, 22), PackedInt32Array(19, 22, 21), PackedInt32Array(25, 24, 23), PackedInt32Array(23, 26, 25), PackedInt32Array(25, 26, 19), PackedInt32Array(19, 26, 18), PackedInt32Array(26, 27, 18), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(24, 25, 28), PackedInt32Array(28, 25, 31), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(35, 39, 36), PackedInt32Array(36, 39, 38), PackedInt32Array(36, 38, 37), PackedInt32Array(35, 32, 39), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43), PackedInt32Array(29, 30, 43), PackedInt32Array(43, 30, 44), PackedInt32Array(44, 30, 45), PackedInt32Array(45, 30, 46), PackedInt32Array(44, 42, 43), PackedInt32Array(41, 47, 40), PackedInt32Array(40, 47, 48), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(52, 49, 53), PackedInt32Array(56, 55, 54), PackedInt32Array(58, 57, 59), PackedInt32Array(59, 57, 47), PackedInt32Array(63, 62, 64), PackedInt32Array(64, 62, 61), PackedInt32Array(64, 61, 60), PackedInt32Array(53, 49, 65), PackedInt32Array(56, 54, 66), PackedInt32Array(66, 54, 53), PackedInt32Array(66, 53, 65), PackedInt32Array(66, 65, 67), PackedInt32Array(63, 68, 62), PackedInt32Array(70, 56, 69), PackedInt32Array(69, 56, 66), PackedInt32Array(71, 48, 60), PackedInt32Array(60, 48, 64), PackedInt32Array(64, 48, 57), PackedInt32Array(57, 48, 47), PackedInt32Array(69, 71, 70), PackedInt32Array(70, 71, 72), PackedInt32Array(72, 71, 60), PackedInt32Array(73, 75, 74), PackedInt32Array(73, 22, 75), PackedInt32Array(75, 22, 20), PackedInt32Array(75, 20, 76), PackedInt32Array(76, 77, 75), PackedInt32Array(78, 33, 79), PackedInt32Array(79, 33, 34), PackedInt32Array(62, 68, 80), PackedInt32Array(80, 68, 81), PackedInt32Array(84, 83, 82), PackedInt32Array(85, 58, 59), PackedInt32Array(85, 59, 86), PackedInt32Array(86, 59, 88), PackedInt32Array(86, 88, 87), PackedInt32Array(81, 86, 80), PackedInt32Array(80, 86, 87), PackedInt32Array(80, 87, 84), PackedInt32Array(80, 84, 82), PackedInt32Array(91, 90, 89), PackedInt32Array(91, 89, 92), PackedInt32Array(92, 89, 93), PackedInt32Array(94, 97, 95), PackedInt32Array(95, 97, 96), PackedInt32Array(98, 92, 99), PackedInt32Array(99, 92, 100), PackedInt32Array(100, 92, 93), PackedInt32Array(96, 97, 100), PackedInt32Array(100, 97, 77), PackedInt32Array(100, 77, 76), PackedInt32Array(100, 76, 99), PackedInt32Array(104, 103, 101), PackedInt32Array(101, 103, 102), PackedInt32Array(107, 106, 105), PackedInt32Array(108, 107, 109), PackedInt32Array(109, 107, 110), PackedInt32Array(110, 107, 105), PackedInt32Array(45, 46, 111), PackedInt32Array(111, 46, 112), PackedInt32Array(90, 111, 89), PackedInt32Array(89, 111, 112)]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_htxhm"]
-viewport_path = NodePath("CharacterBody3D/skeleton_mage/SubViewport")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_4k2k6")
@@ -596,46 +593,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 4.1, 6.6)
 
 [node name="enemies" type="Node3D" parent="." groups=["enemies"]]
 
-[node name="Skeletons" parent="enemies" instance=ExtResource("31_htxhm")]
-transform = Transform3D(0.0717411, 0, -0.997423, 0, 1, 0, 0.997423, 0, 0.0717411, -5.41427, 0.923679, 3.88799)
-
-[node name="CharacterBody3D" parent="enemies/Skeletons" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74772, 0, -4.34392)
-player_path = NodePath("../../../ProtoController")
-
-[node name="Skeleton3D" parent="enemies/Skeletons/CharacterBody3D/skeleton_mage/Rig" index="0"]
-bones/1/position = Vector3(0, 0.37717, 0)
-bones/4/rotation = Quaternion(-0.551603, -0.0622127, -0.655704, 0.511778)
-bones/5/rotation = Quaternion(1.75889e-08, -5.59171e-08, -0.479371, 0.877613)
-bones/7/rotation = Quaternion(-0.316871, -0.330661, 0.135147, 0.878631)
-bones/8/rotation = Quaternion(0.00165208, 0.00165208, -0.701015, 0.713143)
-bones/9/rotation = Quaternion(-0.611065, 0.0823734, 0.628771, 0.473774)
-bones/10/rotation = Quaternion(2.50503e-08, 4.66473e-08, 0.503296, 0.864114)
-bones/12/rotation = Quaternion(-0.31555, 0.304921, -0.216896, 0.872014)
-bones/13/rotation = Quaternion(0.00433286, 0.00510347, 0.702586, 0.711567)
-bones/16/rotation = Quaternion(0.991311, 0.0832303, 0.0773735, 0.0662479)
-bones/17/rotation = Quaternion(0.340094, 5.95136e-08, -2.41832e-07, 0.940391)
-bones/18/rotation = Quaternion(-0.592732, -0.203914, 0.0669177, 0.77628)
-bones/19/rotation = Quaternion(6.92386e-06, 0.920164, -0.391534, -1.51119e-06)
-bones/20/rotation = Quaternion(0.993572, -0.0320977, 0.0303282, 0.104232)
-bones/21/rotation = Quaternion(0.390502, -6.07011e-08, 2.73126e-07, 0.920602)
-bones/22/rotation = Quaternion(-0.621228, 0.113313, -0.018767, 0.775167)
-bones/39/position = Vector3(0.520841, 0.767878, -0.0576374)
-bones/41/position = Vector3(-0.510844, 0.767878, 0.0597369)
-
-[node name="Skeleton_Mage_Hat" parent="enemies/Skeletons/CharacterBody3D/skeleton_mage/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.99972, -1.40143e-09, 0.0236466, 1.39341e-09, 1, 3.55686e-10, -0.0236466, -3.22637e-10, 0.99972, 0.000286014, 1.75561, -6.90145e-06)
-
-[node name="ProgressBar" parent="enemies/Skeletons/CharacterBody3D/skeleton_mage/SubViewport" index="0"]
-offset_top = -13.5
-offset_bottom = 13.5
-
-[node name="Sprite3D" parent="enemies/Skeletons/CharacterBody3D/skeleton_mage" index="4"]
-texture = SubResource("ViewportTexture_htxhm")
+[node name="SkeletonsCharacterBody3D" parent="." instance=ExtResource("32_htxhm")]
+transform = Transform3D(-0.141126, 0, -0.989992, 0, 1, 0, 0.989992, 0, -0.141126, 3.97559, 0.472368, 7.3713)
+player_path = NodePath("../ProtoController")
 
 [editable path="NavigationRegion3D/Floor/FloorStone"]
 [editable path="NavigationRegion3D/Floor/FloorStone/floor_stone"]
 [editable path="NavigationRegion3D/Floor/FloorStone2"]
 [editable path="NavigationRegion3D/Floor/FloorStone2/floor_stone"]
-[editable path="enemies/Skeletons"]
-[editable path="enemies/Skeletons/CharacterBody3D/skeleton_mage"]
