@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctyqluswhhn7v"]
+[gd_scene load_steps=6 format=3 uid="uid://ctyqluswhhn7v"]
 
 [ext_resource type="Script" uid="uid://dqywrlc6wr6sf" path="res://script/progress_bar.gd" id="1_48c2t"]
 [ext_resource type="Script" uid="uid://c8qq3l2ftkbj2" path="res://script/game_over.gd" id="2_0bx4p"]
 [ext_resource type="FontFile" uid="uid://1465i6skli5p" path="res://models/font/Pirata_One/PirataOne-Regular.ttf" id="2_c45xl"]
 [ext_resource type="PackedScene" uid="uid://bxwomabx5uus8" path="res://scenes/menu/menu_button.tscn" id="3_0bx4p"]
+
+[sub_resource type="GDScript" id="GDScript_0bx4p"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -13,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = SubResource("GDScript_0bx4p")
 
 [node name="LabelLife" type="Label" parent="."]
 layout_mode = 1

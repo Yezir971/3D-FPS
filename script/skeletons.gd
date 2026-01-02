@@ -1,9 +1,9 @@
 extends Node3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $CharacterBody3D/skeleton_mage/NavigationAgent3D
-@onready var progress_bar: ProgressBar = $CharacterBody3D/skeleton_mage/SubViewport/ProgressBar
 @onready var area_3d: Area3D = $CharacterBody3D/skeleton_mage/Rig/Area3D
 @onready var animation_player: AnimationPlayer = $CharacterBody3D/skeleton_mage/AnimationPlayer
+@onready var progress_bar: ProgressBar = $CharacterBody3D/skeleton_mage/SubViewport/ProgressBar
 
 
 @export var hp : int = 100
@@ -11,6 +11,7 @@ var is_dead = false
 
 func _ready() -> void:
 	progress_bar.value = hp
+	
 
 func _physics_process(delta: float) -> void:
 	if progress_bar.value <= 0:

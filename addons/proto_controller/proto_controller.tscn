@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=20 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://bsaic3ifvc26" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="PackedScene" uid="uid://dlmklgpuwsqpd" path="res://systems/gun_system.tscn" id="2_5hfox"]
 [ext_resource type="PackedScene" uid="uid://c5gosigpoe0xn" path="res://scenes/player/player.tscn" id="2_wr06p"]
 [ext_resource type="PackedScene" uid="uid://cebrnqmufuday" path="res://scenes/guns/weapon.tscn" id="4_0rk7u"]
 [ext_resource type="PackedScene" uid="uid://ctyqluswhhn7v" path="res://scenes/hud/hud.tscn" id="4_6dqce"]
-[ext_resource type="Script" path="res://script/hud.gd" id="6_ujot4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -163,7 +162,7 @@ anim_player = NodePath("../Player/characterMedium/AnimationPlayer")
 process_mode = 3
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("4_6dqce")]
-script = ExtResource("6_ujot4")
+script = null
 
 [node name="GameOver" parent="CanvasLayer/HUD" index="2"]
 process_mode = 3

@@ -594,15 +594,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 4.1, 6.6)
 [node name="enemies" type="Node3D" parent="." groups=["enemies"]]
 
 [node name="Skeletons" parent="enemies" instance=ExtResource("31_htxhm")]
-transform = Transform3D(0.433061, 0, -0.901364, 0, 1, 0, 0.901364, 0, 0.433061, 2.27348, 0.350012, 8.54398)
+transform = Transform3D(-0.58191, 0, -0.813253, 0, 1, 0, 0.813253, 0, -0.58191, 5.54941, 0.747619, 6.70888)
 
-[node name="Skeletons2" parent="enemies" instance=ExtResource("31_htxhm")]
-transform = Transform3D(0.433061, 0, -0.901364, 0, 1, 0, 0.901364, 0, 0.433061, 5.87423, 0.350012, 5.98865)
-
-[node name="Skeletons3" parent="enemies" instance=ExtResource("31_htxhm")]
-transform = Transform3D(0.433061, 0, -0.901364, 0, 1, 0, 0.901364, 0, 0.433061, 5.87423, 0.350012, 10.3508)
+[node name="CharacterBody3D" parent="enemies/Skeletons" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74772, 0, -4.34392)
+player_path = NodePath("../../../ProtoController")
 
 [editable path="NavigationRegion3D/Floor/FloorStone"]
 [editable path="NavigationRegion3D/Floor/FloorStone/floor_stone"]
 [editable path="NavigationRegion3D/Floor/FloorStone2"]
 [editable path="NavigationRegion3D/Floor/FloorStone2/floor_stone"]
+[editable path="enemies/Skeletons"]
+[editable path="enemies/Skeletons/CharacterBody3D/skeleton_mage"]

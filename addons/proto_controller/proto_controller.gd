@@ -197,7 +197,7 @@ func check_input_mappings():
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
 
-func hit_player(damage : int):
+func hit(damage : int):
 	hp_player.value -= damage
 	
 
