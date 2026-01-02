@@ -14,8 +14,9 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	if progress_bar.value <= 0:
-		death()
+	#if progress_bar.value <= 0:
+		#death()
+	pass
 	
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
