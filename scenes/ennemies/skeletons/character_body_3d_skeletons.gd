@@ -1,8 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 1
-const ATTAK_RANGE = 3
+
 var state_machine
 var is_dead = false
 @onready var animation_tree: AnimationTree = $skeleton_mage/AnimationTree
@@ -20,16 +19,21 @@ var player = null
 var is_attacking = false 
 var can_attack = true
 @export var player_path : NodePath
+@export var speed = 1
+@export var attack_range = 3
 @export var pv : int = 100
+@export var damage_hit : int = 5
 func _ready() -> void:
 	player = get_node(player_path)
 	state_machine = animation_tree.get("parameters/playback")
+	print(state_machine)
 	progress_bar.max_value = pv
 	progress_bar.value = pv
 	
 
 
 func _physics_process(delta: float) -> void:
+	if is_dead: return
 	if progress_bar.value <=0 :
 		animation_tree.set('parameters/conditions/Death', true)
 		is_dead = true
@@ -48,23 +52,25 @@ func _physics_process(delta: float) -> void:
 					is_detected = true
 			if is_detected:
 				animation_tree.set("parameters/conditions/Run", true)
-			animation_tree.set("parameters/conditions/Idle", true)
 			
 
 		"Run":
-			navigation_agent_3d.target_position = player.global_position
-			if not navigation_agent_3d.is_navigation_finished():
+			if target_in_range():
+				animation_tree.set("parameters/conditions/Attack", target_in_range())
+				
+			else:
+				navigation_agent_3d.target_position = player.global_position
 				var next_location = navigation_agent_3d.get_next_path_position()
 				var direction = (next_location - global_position).normalized()
 				look_at(next_location, Vector3.UP, true)
-				velocity.x = direction.x * SPEED
-				velocity.z = direction.z * SPEED
-
-				animation_tree.set("parameters/conditions/Attack", target_in_range())
+				velocity.x = direction.x * speed
+				velocity.z = direction.z * speed
 			
 		"Attack":
-			look_at(Vector3(player.global_position.x, player.global_position.y, player.global_position.z), Vector3.UP, true)
+			
 			animation_tree.set("parameters/conditions/Attack", target_in_range())
+			velocity.x = 0
+			velocity.z = 0
 			animation_tree.set("parameters/conditions/Run", !target_in_range())
 		"Death":
 			collision_shape_3d.disabled = true
@@ -85,10 +91,10 @@ func take_damage(damage : int):
 
 func hit_player():
 	if target_in_range():
-		player.hit(5)
+		player.hit(damage_hit)
 
 func target_position(target):
 	navigation_agent_3d.target_position = target
 
 func target_in_range():
-	return global_position.distance_to(player.global_position) < ATTAK_RANGE
+	return global_position.distance_to(player.global_position) < attack_range
