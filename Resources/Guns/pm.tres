@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Gun" load_steps=4 format=3 uid="uid://b8os73nhyt7dn"]
+[gd_resource type="Resource" script_class="Gun" load_steps=6 format=3 uid="uid://b8os73nhyt7dn"]
 
 [ext_resource type="AudioStream" uid="uid://bnr5i4pu65kcv" path="res://Resources/sound_guns/metalLatch.ogg" id="1_wg4ex"]
+[ext_resource type="AudioStream" uid="uid://chyqyxl6bcv7u" path="res://Resources/sound_guns/fn-p90-sound-effect-265718.mp3" id="2_dltw6"]
 [ext_resource type="ArrayMesh" uid="uid://dardlmmvqva1g" path="res://Resources/mesh/pm.tres" id="2_o5ru4"]
 [ext_resource type="Script" uid="uid://blfcvfm4nko26" path="res://Resources/GunResource.gd" id="2_pt5xr"]
+[ext_resource type="AudioStream" uid="uid://d0jvr4brweyb3" path="res://Resources/sound_guns/reload.mp3" id="4_uhypw"]
 
 [resource]
 script = ExtResource("2_pt5xr")
@@ -12,7 +14,8 @@ mesh = ExtResource("2_o5ru4")
 cooldown = 0.2
 swaay = 0.15
 automatic = true
-firing_sound = Array[AudioStream]([])
+firing_sound = Array[AudioStream]([ExtResource("2_dltw6")])
+reload_sound = ExtResource("4_uhypw")
 dry_audio_sound = ExtResource("1_wg4ex")
 damage = 6
 spread = 0.0

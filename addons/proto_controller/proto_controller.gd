@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var hp_player: ProgressBar = $CanvasLayer/HUD/ProgressBar
 @onready var game_over: Control = $CanvasLayer/HUD/GameOver
+@onready var weapon: Node3D = $Head/Camera3D/Weapon
 
 ## Can we move around?
 @export var can_move : bool = true
@@ -21,11 +22,11 @@ extends CharacterBody3D
 ## Look around rotation speed.
 @export var look_speed : float = 0.002
 ## Normal speed.
-@export var base_speed : float = 7.0
+@export var base_speed : float = 5
 ## Speed of jump.
-@export var jump_velocity : float = 10
+@export var jump_velocity : float = 4
 ## How fast do we run?
-@export var sprint_speed : float = 10.0
+@export var sprint_speed : float = 7
 ## How fast do we freefly?
 @export var freefly_speed : float = 25.0
 
@@ -200,7 +201,13 @@ func check_input_mappings():
 func hit(damage : int):
 	hp_player.value -= damage
 	
-
+func health(hp_increase : int):
+	hp_player.value += hp_increase
+func boxe_reload():
+	weapon.current_amo = weapon.DATA_GUN.bullet_amount
+	weapon.current_mag = weapon.DATA_GUN.max_mag
+	weapon.updateHud()
+	
 #func switch_weapon(new_weapon : Gun):
 	#if new_weapon == current_gun:
 		#return

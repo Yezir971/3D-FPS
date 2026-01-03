@@ -27,13 +27,14 @@ var can_attack = true
 func _ready() -> void:
 	player = get_node(player_path)
 	state_machine = animation_tree.get("parameters/playback")
-	print(state_machine)
 	progress_bar.max_value = pv
 	progress_bar.value = pv
 	
 
 
 func _physics_process(delta: float) -> void:
+	if not is_inside_tree():
+		return
 	if progress_bar.value <= 0 :
 		animation_tree.set('parameters/conditions/Death', true)
 		is_dead = true
@@ -52,12 +53,9 @@ func _physics_process(delta: float) -> void:
 					is_detected = true
 			if is_detected:
 				animation_tree.set("parameters/conditions/Run", true)
-			
-
 		"Run":
 			if target_in_range():
 				animation_tree.set("parameters/conditions/Attack", target_in_range())
-				
 			else:
 				navigation_agent_3d.target_position = player.global_position
 				var next_location = navigation_agent_3d.get_next_path_position()
@@ -65,7 +63,6 @@ func _physics_process(delta: float) -> void:
 				look_at(next_location, Vector3.UP, true)
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
-			
 		"Attack":
 			
 			animation_tree.set("parameters/conditions/Attack", target_in_range())
@@ -73,38 +70,38 @@ func _physics_process(delta: float) -> void:
 			velocity.z = 0
 			animation_tree.set("parameters/conditions/Run", !target_in_range())
 		"Death":
-			collision_shape_3d.disabled = true
-			await get_tree().create_timer(2).timeout
-			#insrance de l'objet de loot 
-			match lootSpawn.pick_random():
-				"":
-					const ZOMBIE_COPIE = preload("res://scenes/ennemies/zombies/zombie_copie.tscn")
-					var instance_loot = ZOMBIE_COPIE.instantiate()
-					instance_loot.global_position = global_position
-					get_parent().add_child(instance_loot)
-					print("tu as loot absolument rien 😂")
-				"Health":
-					const ZOMBIE_COPIE = preload("res://scenes/ennemies/zombies/zombie_copie.tscn")
-					var instance_loot = ZOMBIE_COPIE.instantiate()
-					instance_loot.global_position = global_position
-					get_parent().add_child(instance_loot)
-					print("Tu as loot de la vie !")
-				"Amo":
-					const ZOMBIE_COPIE = preload("res://scenes/ennemies/zombies/zombie_copie.tscn")
-					var instance_loot = ZOMBIE_COPIE.instantiate()
-					instance_loot.global_position = global_position
-					get_parent().add_child(instance_loot)
-					print('tu as loot des munitions') 
-			queue_free()
+			if is_dead:
+				collision_shape_3d.disabled = true
+				await get_tree().create_timer(2).timeout
+				#insrance de l'objet de loot 
+				var spawn_above = global_position + Vector3(0, 0.2, 0)
+				match lootSpawn.pick_random():
+					"":
+						#const SKELETONS_CHARACTER_BODY_3D = preload("res://scenes/ennemies/skeletons/skeletons_character_body_3d.tscn")
+						#var instance_loot = SKELETONS_CHARACTER_BODY_3D.instantiate()
+						#instance_loot.global_position = global_position
+						#get_parent().add_child(instance_loot)
+						pass
+					"Health":
+						spawn_item("res://scenes/loot/loot_life.tscn", spawn_above)
+					"Amo":
+						spawn_item("res://scenes/loot/loot_life.tscn", spawn_above)
+				queue_free()
 				
 		"Hit":
 			animation_tree.set('parameters/conditions/Hit', progress_bar.value <= 0)
 			velocity = Vector3.ZERO
 			animation_tree.set('parameters/conditions/Hit', false)
-			
-
 	move_and_slide()
 	
+func spawn_item(path: String, pos: Vector3):
+	var scene = load(path)
+	if scene:
+		var instance = scene.instantiate()
+		instance.global_position = pos
+		# Utiliser call_deferred est plus sûr pour éviter les erreurs d'arborescence
+		get_parent().call_deferred("add_child", instance)
+		
 func take_damage(damage : int):
 	if is_dead : return
 	progress_bar.value -= damage

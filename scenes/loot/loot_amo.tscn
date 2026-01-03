@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=4 uid="uid://ducbpqh6udmji"]
+
+[ext_resource type="Script" uid="uid://covysj1xhykah" path="res://scenes/loot/loot_amo.gd" id="1_dnjt3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnjt3"]
+albedo_color = Color(0.117647, 0.372549, 0.0313726, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7iwhj"]
+_surfaces = [{
+"aabb": AABB(-0.323257, -0.222099, -0.169312, 0.646515, 0.444199, 0.338623),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AIKlvgBuY74AYC0+AIKlvgBuY74AYC2+AIKlvgBuYz4AYC2+AIKlPgBuY74AYC2+AIKlvgBuY74AYC2+AIKlvgBuY74AYC0+AIKlvgBuYz4AYC2+AIKlvgBuY74AYC2+AIKlPgBuY74AYC2+AIKlvgBuYz4AYC2+AIKlvgBuYz4AYC0+AIKlvgBuY74AYC0+AIKlvgBuY74AYC0+AIKlvgBuYz4AYC0+AIKlPgBuYz4AYC0+AIKlPgBuYz4AYC0+AIKlvgBuYz4AYC0+AIKlvgBuYz4AYC2+AIKlvgBuY74AYC0+AIKlPgBuY74AYC0+AIKlPgBuY74AYC2+AIKlPgBuYz4AYC0+AIKlPgBuY74AYC0+AIKlvgBuY74AYC0+AIKlPgBuY74AYC2+AIKlPgBuY74AYC0+AIKlPgBuYz4AYC0+AIKlPgBuY74AYC2+AIKlPgBuYz4AYC2+AIKlvgBuYz4AYC2+AIKlvgBuYz4AYC2+AIKlPgBuYz4AYC2+AIKlPgBuYz4AYC0+AIKlPgBuYz4AYC0+AIKlPgBuYz4AYC2+AIKlPgBuY74AYC2+AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7suqb"]
+points = PackedVector3Array(0.323257, 0.222099, 0.169278, 0.323257, 0.222099, -0.169312, -0.323257, 0.222099, 0.169278, 0.323257, -0.222099, 0.169278, 0.323257, -0.222099, -0.169312, -0.323257, 0.222099, -0.169312, -0.323257, -0.222099, 0.169278, -0.323257, -0.222099, -0.169312)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vr3gk"]
+albedo_color = Color(1, 0.960784, 0.152941, 1)
+metallic = 0.96
+
+[sub_resource type="Animation" id="Animation_7b66h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.17327)]
+}
+
+[sub_resource type="Animation" id="Animation_s4cvi"]
+resource_name = "rotation"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.795382, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.795382, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.17327), Vector3(0, 0.5, 0.173), Vector3(0, 0, 0.17327)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cwicg"]
+_data = {
+&"RESET": SubResource("Animation_7b66h"),
+&"rotation": SubResource("Animation_s4cvi")
+}
+
+[node name="LootAmo" type="Node3D"]
+script = ExtResource("1_dnjt3")
+
+[node name="Container" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.17327)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Container"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00791931, 0.588788, -0.16394)
+material_override = SubResource("StandardMaterial3D_dnjt3")
+size = Vector3(0.646515, 0.444199, 0.338623)
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Container"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00791931, 0.588788, -0.16394)
+mesh = SubResource("ArrayMesh_7iwhj")
+
+[node name="Area3D" type="Area3D" parent="Container"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Container/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00791931, 0.588788, -0.16394)
+shape = SubResource("ConvexPolygonShape3D_7suqb")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Container"]
+transform = Transform3D(0.913489, -0.406864, 0, 0.406864, 0.913489, 0, 0, 0, 1, -0.137491, 0.577348, 0.0193092)
+material_override = SubResource("StandardMaterial3D_vr3gk")
+radius = 0.0449219
+height = 0.254852
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Container"]
+transform = Transform3D(0.999392, -0.0348646, 0, 0.0348646, 0.999392, 0, 0, 0, 1, 0.00974643, 0.647149, 0.0193092)
+material_override = SubResource("StandardMaterial3D_vr3gk")
+radius = 0.0449219
+height = 0.254852
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Container"]
+transform = Transform3D(0.933555, 0.358433, 0, -0.358433, 0.933555, 0, 0, 0, 1, 0.162087, 0.576723, 0.0193092)
+material_override = SubResource("StandardMaterial3D_vr3gk")
+radius = 0.0449219
+height = 0.254852
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Container"]
+transform = Transform3D(0.913489, -0.406864, 0, 0.406864, 0.913489, 0, 0, 0, 1, -0.137491, 0.577348, -0.33471)
+material_override = SubResource("StandardMaterial3D_vr3gk")
+radius = 0.0449219
+height = 0.254852
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Container"]
+transform = Transform3D(0.999392, -0.0348646, 0, 0.0348646, 0.999392, 0, 0, 0, 1, 0.00974643, 0.647149, -0.33471)
+material_override = SubResource("StandardMaterial3D_vr3gk")
+radius = 0.0449219
+height = 0.254852
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Container"]
+transform = Transform3D(0.933555, 0.358433, 0, -0.358433, 0.933555, 0, 0, 0, 1, 0.162087, 0.576723, -0.33471)
+material_override = SubResource("StandardMaterial3D_vr3gk")
+radius = 0.0449219
+height = 0.254852
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Container"]
+libraries = {
+&"": SubResource("AnimationLibrary_cwicg")
+}
+autoplay = "rotation"
+
+[connection signal="body_entered" from="Container/Area3D" to="." method="_on_area_3d_body_entered"]
