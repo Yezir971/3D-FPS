@@ -88,6 +88,7 @@ func _physics_process(delta: float) -> void:
 						spawn_item("res://scenes/loot/loot_amo.tscn", spawn_above)
 				queue_free()
 		
+		"Hit":
 			animation_tree.set('parameters/conditions/Hit', progress_bar.value <= 0)
 			velocity = Vector3.ZERO
 			animation_tree.set('parameters/conditions/Hit', false)
