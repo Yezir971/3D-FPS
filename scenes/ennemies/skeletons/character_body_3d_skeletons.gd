@@ -6,6 +6,7 @@ var state_machine
 var is_dead = false
 @onready var animation_tree: AnimationTree = $skeleton_mage/AnimationTree
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+var lootSpawn = [ "", "Health", "Amo" ]
 
 var gravity = 9.8
 @onready var navigation_agent_3d: NavigationAgent3D = $skeleton_mage/NavigationAgent3D
@@ -33,8 +34,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_dead: return
-	if progress_bar.value <=0 :
+	if progress_bar.value <= 0 :
 		animation_tree.set('parameters/conditions/Death', true)
 		is_dead = true
 	if not is_on_floor(): 
@@ -74,11 +74,34 @@ func _physics_process(delta: float) -> void:
 			animation_tree.set("parameters/conditions/Run", !target_in_range())
 		"Death":
 			collision_shape_3d.disabled = true
-			await get_tree().create_timer(5).timeout
+			await get_tree().create_timer(2).timeout
+			#insrance de l'objet de loot 
+			match lootSpawn.pick_random():
+				"":
+					const ZOMBIE_COPIE = preload("res://scenes/ennemies/zombies/zombie_copie.tscn")
+					var instance_loot = ZOMBIE_COPIE.instantiate()
+					instance_loot.global_position = global_position
+					get_parent().add_child(instance_loot)
+					print("tu as loot absolument rien 😂")
+				"Health":
+					const ZOMBIE_COPIE = preload("res://scenes/ennemies/zombies/zombie_copie.tscn")
+					var instance_loot = ZOMBIE_COPIE.instantiate()
+					instance_loot.global_position = global_position
+					get_parent().add_child(instance_loot)
+					print("Tu as loot de la vie !")
+				"Amo":
+					const ZOMBIE_COPIE = preload("res://scenes/ennemies/zombies/zombie_copie.tscn")
+					var instance_loot = ZOMBIE_COPIE.instantiate()
+					instance_loot.global_position = global_position
+					get_parent().add_child(instance_loot)
+					print('tu as loot des munitions') 
 			queue_free()
+				
 		"Hit":
+			animation_tree.set('parameters/conditions/Hit', progress_bar.value <= 0)
 			velocity = Vector3.ZERO
 			animation_tree.set('parameters/conditions/Hit', false)
+			
 
 	move_and_slide()
 	
