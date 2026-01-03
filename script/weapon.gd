@@ -32,11 +32,11 @@ var current_coldown : float
 func _ready():
 	update_weapon()
 
+var data_amo = {}
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("gun_slot_1"):
 		DATA_GUN = preload("res://Resources/Guns/sniper.tres")
-		update_weapon()
 		showHud()
 		updateHud()
 		can_shoot = true
@@ -59,7 +59,6 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("gun_slot_2"):
 		DATA_GUN = preload("res://Resources/Guns/shot_gun.tres")
-		update_weapon()
 		showHud()
 		updateHud()
 		can_shoot = true
@@ -81,7 +80,6 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("gun_slot_3"):
 		DATA_GUN =  preload("res://Resources/Guns/pm.tres")
-		update_weapon()
 		showHud()
 		updateHud()
 		can_shoot = true
@@ -112,6 +110,7 @@ func _input(event: InputEvent) -> void:
 			get_tree().root.add_child(instance)
 			if not DATA_GUN.max_mag_infinit :
 				current_amo -= 1
+				update_data_weapon(current_amo, current_mag)
 				updateHud()
 		if not animation_shoot.is_playing() and current_amo == 0:
 			empty_amo_sound.play()
@@ -123,12 +122,18 @@ func _input(event: InputEvent) -> void:
 			reload_sound.play()
 			current_amo = DATA_GUN.bullet_amount
 			current_mag -=1
+			update_data_weapon(current_amo, current_mag)
 			updateHud()
+			
 func update_weapon():
 	if DATA_GUN != null and has_node("WeaponMesh"):
-		
-		current_amo = DATA_GUN.bullet_amount
-		current_mag = DATA_GUN.max_mag
+		if data_amo.has(DATA_GUN.ammo):
+			current_amo = data_amo[DATA_GUN.ammo]["ammo"]
+			current_mag = data_amo[DATA_GUN.ammo]["mag"]
+		else: 
+			current_amo = DATA_GUN.bullet_amount
+			current_mag = DATA_GUN.max_mag
+		update_data_weapon(current_amo, current_mag)
 		current_dammage = DATA_GUN.damage
 		current_coldown = DATA_GUN.cooldown
 		
@@ -136,10 +141,23 @@ func update_weapon():
 		fire_sound.stream = DATA_GUN.firing_sound.pick_random()
 		reload_sound.stream = DATA_GUN.reload_sound
 		empty_amo_sound.stream = DATA_GUN.dry_audio_sound
-		
+
+func update_data_weapon(bullet: int, mag: int):
+	data_amo[DATA_GUN.ammo] = {
+		"ammo":bullet,
+		"mag":mag
+	}
+	
 func updateHud():
 	amoun_amo_hud.text = str(current_amo) + " / " + str(current_mag)
 	name_wapon_hud.text = str(DATA_GUN.ammo)
 func showHud():
 	amoun_amo_hud.visible = true
 	name_wapon_hud.visible = true
+	
+#var data = {
+	#"snipper": {
+		#"amo":12,
+		#"mag": 10
+	#}
+#}

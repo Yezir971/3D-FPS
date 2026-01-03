@@ -2304,7 +2304,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 4.1, 2.59161)
 [node name="Celling22" parent="NavigationRegion3D/Roof" instance=ExtResource("3_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 4.1, 1.74329)
 
-[node name="enemies" type="Node3D" parent="." groups=["enemies"]]
+[node name="enemies" type="Node3D" parent="."]
 
 [node name="SkeletonsCharacterBody3D" parent="enemies" instance=ExtResource("32_htxhm")]
 transform = Transform3D(0.0992155, 0, -0.995066, 0, 1, 0, 0.995066, 0, 0.0992155, 36.4947, 0.472368, -5.46375)
@@ -2334,17 +2334,17 @@ player_path = NodePath("../../ProtoController")
 speed = 3
 pv = 500
 
-[node name="SkeletonsCharacterBody3D" parent="." instance=ExtResource("32_htxhm")]
+[node name="SkeletonsCharacterBody3D5" parent="enemies" instance=ExtResource("32_htxhm")]
 transform = Transform3D(-0.27186, 0, -0.962337, 0, 1, 0, 0.962337, 0, -0.27186, 8.36767, 0.658356, 11.0259)
-player_path = NodePath("../ProtoController")
+player_path = NodePath("../../ProtoController")
 
-[node name="SkeletonsCharacterBody3D2" parent="." instance=ExtResource("32_htxhm")]
+[node name="SkeletonsCharacterBody3D6" parent="enemies" instance=ExtResource("32_htxhm")]
 transform = Transform3D(-0.0439682, 0, -0.999033, 0, 1, 0, 0.999033, 0, -0.0439682, 9.17684, 0.658356, 8.4732)
-player_path = NodePath("../ProtoController")
+player_path = NodePath("../../ProtoController")
 
-[node name="SkeletonsCharacterBody3D3" parent="." instance=ExtResource("32_htxhm")]
+[node name="SkeletonsCharacterBody3D7" parent="enemies" instance=ExtResource("32_htxhm")]
 transform = Transform3D(0.0954982, 0, -0.99543, 0, 1, 0, 0.99543, 0, 0.0954982, 9.17684, 0.658356, 6.5291)
-player_path = NodePath("../ProtoController")
+player_path = NodePath("../../ProtoController")
 
 [editable path="NavigationRegion3D/Floor/FloorStone"]
 [editable path="NavigationRegion3D/Floor/FloorStone/floor_stone"]

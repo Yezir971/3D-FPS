@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var hp_player: ProgressBar = $CanvasLayer/HUD/ProgressBar
 @onready var game_over: Control = $CanvasLayer/HUD/GameOver
 @onready var weapon: Node3D = $Head/Camera3D/Weapon
+@onready var win_game: Control = $CanvasLayer/HUD/WinGame
+@onready var monstre_restant_label: Label = $CanvasLayer/HUD/MonstreRestantLabel
 
 ## Can we move around?
 @export var can_move : bool = true
@@ -72,6 +74,7 @@ func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+	monstre_restant_label.text = "Monstres restants : " + str(get_tree().get_nodes_in_group("enemies").size()/2)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -91,11 +94,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			disable_freefly()
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
+	monstre_restant_label.text = "Monstres restants : " + str(get_tree().get_nodes_in_group("enemies").size()/2)
+	if get_tree().get_nodes_in_group("enemies").size()/2 == 0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = true
+		win_game.visible = true 
+		
 	if hp_player.value <= 0:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = true
 		game_over.visible = true 
+
+
+func _physics_process(delta: float) -> void:
+
 		
 	
 	# If freeflying, handle freefly and nothing else

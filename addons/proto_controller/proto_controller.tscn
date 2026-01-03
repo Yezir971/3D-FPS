@@ -1,10 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=23 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://bsaic3ifvc26" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="PackedScene" uid="uid://dlmklgpuwsqpd" path="res://systems/gun_system.tscn" id="2_5hfox"]
 [ext_resource type="PackedScene" uid="uid://c5gosigpoe0xn" path="res://scenes/player/player.tscn" id="2_wr06p"]
 [ext_resource type="PackedScene" uid="uid://cebrnqmufuday" path="res://scenes/guns/weapon.tscn" id="4_0rk7u"]
 [ext_resource type="PackedScene" uid="uid://ctyqluswhhn7v" path="res://scenes/hud/hud.tscn" id="4_6dqce"]
+[ext_resource type="Script" uid="uid://c8qq3l2ftkbj2" path="res://script/game_over.gd" id="6_1tksx"]
+[ext_resource type="FontFile" uid="uid://1465i6skli5p" path="res://models/font/Pirata_One/PirataOne-Regular.ttf" id="7_ths8c"]
+[ext_resource type="PackedScene" uid="uid://bxwomabx5uus8" path="res://scenes/menu/menu_button.tscn" id="8_x436g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -167,6 +170,59 @@ script = null
 
 [node name="GameOver" parent="CanvasLayer/HUD" index="2"]
 process_mode = 3
+
+[node name="WinGame" type="Control" parent="CanvasLayer/HUD"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_1tksx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/WinGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/HUD/WinGame/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/WinGame/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ths8c")
+theme_override_font_sizes/font_size = 64
+text = "Win !!!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/WinGame/VBoxContainer"]
+custom_minimum_size = Vector2(0, 341)
+layout_mode = 2
+alignment = 1
+
+[node name="Play" parent="CanvasLayer/HUD/WinGame/VBoxContainer/VBoxContainer" instance=ExtResource("8_x436g")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_right = NodePath("../Exit")
+focus_next = NodePath("../Exit")
+focus_previous = NodePath("../Exit")
+text = "Replay"
+
+[node name="Exit" parent="CanvasLayer/HUD/WinGame/VBoxContainer/VBoxContainer" instance=ExtResource("8_x436g")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_right = NodePath("../Play")
+focus_next = NodePath("../Play")
+focus_previous = NodePath("../Play")
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/HUD/WinGame/VBoxContainer/VBoxContainer/Play" to="CanvasLayer/HUD/WinGame" method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/WinGame/VBoxContainer/VBoxContainer/Exit" to="CanvasLayer/HUD/WinGame" method="_on_exit_pressed"]
 
 [editable path="Player"]
 [editable path="Player/characterMedium"]
