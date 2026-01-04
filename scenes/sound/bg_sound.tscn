@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://w3drqownuqcu"]
+
+[ext_resource type="AudioStream" uid="uid://ckhy1eosi20dr" path="res://sound/TitanfallAscension.mp3" id="1_m2gch"]
+
+[node name="BgSound" type="AudioStreamPlayer"]
+stream = ExtResource("1_m2gch")
+autoplay = true

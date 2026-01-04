@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var weapon: Node3D = $Head/Camera3D/Weapon
 @onready var win_game: Control = $CanvasLayer/HUD/WinGame
 @onready var monstre_restant_label: Label = $CanvasLayer/HUD/MonstreRestantLabel
+@onready var mennu_pause: Control = $CanvasLayer/HUD/MennuPause
 
 ## Can we move around?
 @export var can_move : bool = true
@@ -109,7 +110,10 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 
-		
+	#pause 
+	if Input.is_action_just_pressed("pause"):
+		mennu_pause.visible = !mennu_pause.visible
+		get_tree().paused = !get_tree().paused
 	
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:

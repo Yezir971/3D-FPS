@@ -1906,7 +1906,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 8.20469, 14.6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 8.20469, 10.6)
 
 [node name="Celling42" parent="NavigationRegion3D/Roof" instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 8.20469, 6.6)
+transform = Transform3D(1, -0.0004666, -0.000205295, 0.00046693, 0.999999, 0.00161435, 0.000204543, -0.00161445, 0.999999, 9.4, 8.20469, 6.6)
 
 [node name="Celling26" parent="NavigationRegion3D/Roof" instance=ExtResource("3_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3688, 8.20469, 18.6)
@@ -2311,7 +2311,7 @@ transform = Transform3D(0.0992155, 0, -0.995066, 0, 1, 0, 0.995066, 0, 0.0992155
 player_path = NodePath("../../ProtoController")
 speed = 15
 attack_range = 1
-pv = 900
+pv = 500
 damage_hit = 50
 
 [node name="Boss2" parent="enemies" instance=ExtResource("32_htxhm")]
@@ -2319,7 +2319,7 @@ transform = Transform3D(0.0172433, 0, 0.999852, 0, 1, 0, -0.999852, 0, 0.0172433
 player_path = NodePath("../../ProtoController")
 speed = 15
 attack_range = 1
-pv = 900
+pv = 500
 damage_hit = 50
 
 [node name="SkeletonsCharacterBody3D2" parent="enemies" instance=ExtResource("32_htxhm")]
@@ -2331,13 +2331,6 @@ damage_hit = 10
 
 [node name="SkeletonsCharacterBody3D14" parent="enemies" instance=ExtResource("32_htxhm")]
 transform = Transform3D(-0.0424855, 0, 0.999098, 0, 1, 0, -0.999098, 0, -0.0424855, 0.975098, 4.4725, 6.0798)
-player_path = NodePath("../../ProtoController")
-speed = 2
-pv = 50
-damage_hit = 10
-
-[node name="SkeletonsCharacterBody3D15" parent="enemies" instance=ExtResource("32_htxhm")]
-transform = Transform3D(-0.996495, 0, 0.083661, 0, 1, 0, -0.083661, 0, -0.996495, 9.19145, 4.4725, 9.48852)
 player_path = NodePath("../../ProtoController")
 speed = 2
 pv = 50
@@ -2359,7 +2352,6 @@ damage_hit = 10
 
 [node name="SkeletonsCharacterBody3D3" parent="enemies" instance=ExtResource("32_htxhm")]
 transform = Transform3D(0.991324, 0, -0.131443, 0, 1, 0, 0.131443, 0, 0.991324, -12.2475, 0.472368, 2.6083)
-visible = false
 player_path = NodePath("../../ProtoController")
 speed = 2
 pv = 50

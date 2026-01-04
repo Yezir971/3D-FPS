@@ -67,24 +67,7 @@ func _physics_process(delta: float) -> void:
 				animation_tree.set("parameters/conditions/Run", !target_in_range())
 			velocity = Vector3.ZERO
 		"Death":
-			if is_dead:
-				collision_shape_3d.disabled = true
-				await get_tree().create_timer(2).timeout
-				#insrance de l'objet de loot 
-				var spawn_above = global_position + Vector3(0, 0.2, 0)
-				match lootSpawn.pick_random():
-					"":
-						#const SKELETONS_CHARACTER_BODY_3D = preload("res://scenes/ennemies/skeletons/skeletons_character_body_3d.tscn")
-						#var instance_loot = SKELETONS_CHARACTER_BODY_3D.instantiate()
-						#instance_loot.global_position = global_position
-						#get_parent().add_child(instance_loot)
-						pass
-					"Health":
-						spawn_item("res://scenes/loot/loot_life.tscn", spawn_above)
-					"Amo":
-						spawn_item("res://scenes/loot/loot_amo.tscn", spawn_above)
-				queue_free()
-		
+			velocity = Vector3.ZERO
 		"Hit":
 			animation_tree.set('parameters/conditions/Hit', progress_bar.value <= 0)
 			velocity = Vector3.ZERO
@@ -93,14 +76,37 @@ func _physics_process(delta: float) -> void:
 
 
 	
-func spawn_item(path: String, pos: Vector3):
-	var scene = load(path)
+func spawn_item():
+	if not is_inside_tree():
+		return
+
+
+	var current_pos = global_position 
+
+	var path_name_loot: String = ""
+	match lootSpawn.pick_random():
+		"": return
+		"Health":
+			path_name_loot = "res://scenes/loot/loot_life.tscn"
+		"Amo":
+			path_name_loot = "res://scenes/loot/loot_amo.tscn"
+			
+	var scene = load(path_name_loot)
 	if scene:
 		var instance = scene.instantiate()
-		instance.global_position = pos
-		# Utiliser call_deferred est plus sûr pour éviter les erreurs d'arborescence
-		get_parent().call_deferred("add_child", instance)
 		
+		var parent = get_parent()
+		if parent and parent.is_inside_tree():
+
+			
+			parent.call_deferred("add_child", instance)
+			#instance.global_position = current_pos + Vector3(0, 0.2, 0)
+			instance.transform.origin = current_pos + Vector3(0, 0.2, 0)
+			#instance.set_deferred("global_position", current_pos + Vector3(0, 0.2, 0))
+func death_body():
+	collision_shape_3d.disabled = true
+	queue_free()
+
 func take_damage(damage : int):
 	if is_dead : return
 	progress_bar.value -= damage
