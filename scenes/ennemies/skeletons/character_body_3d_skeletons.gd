@@ -7,7 +7,7 @@ var is_dead = false
 @onready var animation_tree: AnimationTree = $skeleton_mage/AnimationTree
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 var lootSpawn = [ "", "Health", "Amo" ]
-
+var attack_in_progress = false
 var gravity = 9.8
 @onready var navigation_agent_3d: NavigationAgent3D = $skeleton_mage/NavigationAgent3D
 @onready var animation_player: AnimationPlayer = $skeleton_mage/AnimationPlayer
@@ -33,8 +33,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_inside_tree():
-		return
 	if progress_bar.value <= 0 :
 		animation_tree.set('parameters/conditions/Death', true)
 		is_dead = true
@@ -64,11 +62,10 @@ func _physics_process(delta: float) -> void:
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
 		"Attack":
-			
-			animation_tree.set("parameters/conditions/Attack", target_in_range())
-			velocity.x = 0
-			velocity.z = 0
-			animation_tree.set("parameters/conditions/Run", !target_in_range())
+			if not attack_in_progress:
+				animation_tree.set("parameters/conditions/Attack", target_in_range())
+				animation_tree.set("parameters/conditions/Run", !target_in_range())
+			velocity = Vector3.ZERO
 		"Death":
 			if is_dead:
 				collision_shape_3d.disabled = true
@@ -93,6 +90,8 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector3.ZERO
 			animation_tree.set('parameters/conditions/Hit', false)
 	move_and_slide()
+
+
 	
 func spawn_item(path: String, pos: Vector3):
 	var scene = load(path)

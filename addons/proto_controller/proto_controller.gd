@@ -221,11 +221,5 @@ func boxe_reload():
 	weapon.current_mag = weapon.DATA_GUN.max_mag
 	weapon.updateHud()
 	
-#func switch_weapon(new_weapon : Gun):
-	#if new_weapon == current_gun:
-		#return
-	#amo[current_gun.ammo] += current_bullets
-	#current_bullets = 0
-	#
-	#current_gun = new_weapon
+
 	
