@@ -224,7 +224,8 @@ texture = ExtResource("4_qun7j")
 layout_mode = 2
 text = "brll brll !"
 
-[node name="CrossHair2" type="TextureRect" parent="HudWeapon/Control"]
+[node name="CrossHair" type="TextureRect" parent="HudWeapon/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

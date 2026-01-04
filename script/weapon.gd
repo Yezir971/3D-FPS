@@ -8,6 +8,7 @@ extends Node3D
 
 @onready var amoun_amo_hud: Label = $"HudWeapon/Control/AmounAmo"
 @onready var name_wapon_hud: Label = $HudWeapon/Control/NameWapon
+@onready var cross_hair: TextureRect = $HudWeapon/Control/CrossHair
 
 @onready var hud_weapon_1: MarginContainer = $"HudWeapon/Control/HBoxContainer/1/MarginContainer/MarginContainer"
 @onready var hud_weapon_2: MarginContainer = $"HudWeapon/Control/HBoxContainer/2/MarginContainer/MarginContainer"
@@ -154,6 +155,7 @@ func updateHud():
 func showHud():
 	amoun_amo_hud.visible = true
 	name_wapon_hud.visible = true
+	cross_hair.visible = true
 	
 #var data = {
 	#"snipper": {
