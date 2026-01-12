@@ -279,8 +279,8 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 ## 👤 Auteur
 
 **Ahmedaly James**
-- Portfolio : [votre-portfolio.com](https://james-ahmedaly.com)
-- LinkedIn : [linkedin.com/in/votre-profil](https://www.linkedin.com/in/james-ahmedaly-7523092a5/)
+- Portfolio : [https://james-ahmedaly.com](https://james-ahmedaly.com)
+- LinkedIn : [https://www.linkedin.com/in/james-ahmedaly-7523092a5/](https://www.linkedin.com/in/james-ahmedaly-7523092a5/)
 - Email : james_ahmedaly@yahoo.com
 
 ---
